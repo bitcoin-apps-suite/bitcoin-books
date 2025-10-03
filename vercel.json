@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "index.html": {
+      "runtime": "@vercel/static"
+    }
+  },
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
