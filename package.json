@@ -1,0 +1,16 @@
+{
+  "name": "bitcoin-books",
+  "version": "1.0.0",
+  "description": "A curated collection of books about Bitcoin and cryptocurrency",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step required for static site'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitcoin-apps-suite/bitcoin-books.git"
+  },
+  "keywords": ["bitcoin", "cryptocurrency", "books", "library"],
+  "author": "",
+  "license": "MIT"
+}
