@@ -1,6 +1,6 @@
-# Bitcoin Library
+# Bitcoin Books
 
-A curated library of books about Bitcoin and cryptocurrency.
+A curated collection of books about Bitcoin and cryptocurrency.
 
 ## Description
 
