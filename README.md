@@ -6,6 +6,8 @@ A curated library of books about Bitcoin and cryptocurrency.
 
 This repository contains a comprehensive collection of books, guides, and educational resources related to Bitcoin and the broader cryptocurrency ecosystem.
 
+Browse the collection to learn about Bitcoin fundamentals, technical implementations, economic theory, and more.
+
 ## Deployment
 
 The project is deployed on Vercel: https://vercel.com/ai-tribes/bitcoin-books/deployments
