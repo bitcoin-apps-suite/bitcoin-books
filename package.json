@@ -1,16 +1,88 @@
 {
   "name": "bitcoin-books",
-  "version": "1.0.0",
-  "description": "A curated collection of books about Bitcoin and cryptocurrency",
-  "main": "index.html",
+  "version": "2.0.0",
+  "description": "A curated collection of Bitcoin books and cryptocurrency literature",
+  "license": "Open-BSV",
+  "author": "The Bitcoin Corporation LTD",
+  "private": true,
+  "dependencies": {
+    "@bsv/sdk": "^1.7.6",
+    "@handcash/handcash-sdk": "^0.0.4",
+    "@react-oauth/google": "^0.12.2",
+    "@scure/base": "^2.0.0",
+    "@scure/btc-signer": "^2.0.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/crypto-js": "^4.2.2",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-router-dom": "^5.3.3",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "docx": "^9.5.1",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "file-saver": "^2.0.5",
+    "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.544.0",
+    "mammoth": "^1.10.0",
+    "micro-ordinals": "^0.3.0",
+    "quill": "^2.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-draggable": "^4.5.0",
+    "react-quill": "^2.0.0",
+    "react-router-dom": "^6.20.0",
+    "react-scripts": "5.0.1",
+    "twitter-api-v2": "^1.27.0",
+    "typescript": "^4.9.0",
+    "uuid": "^13.0.0",
+    "web-vitals": "^2.1.0"
+  },
   "scripts": {
-    "build": "echo 'No build step required for static site'"
+    "start": "PORT=2010 react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject",
+    "api": "node api/server.js",
+    "dev": "concurrently \"npm run api\" \"npm start\""
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bitcoin-apps-suite/bitcoin-books.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
   },
-  "keywords": ["bitcoin", "cryptocurrency", "books", "library"],
-  "author": "",
-  "license": "MIT"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0",
+    "@types/file-saver": "^2.0.7",
+    "@types/uuid": "^10.0.0",
+    "assert": "^2.1.0",
+    "buffer": "^6.0.3",
+    "concurrently": "^9.2.1",
+    "crypto-browserify": "^3.12.1",
+    "electron": "^27.0.0",
+    "electron-builder": "^26.0.12",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0",
+    "vm-browserify": "^1.1.2",
+    "wait-on": "^8.0.5"
+  }
 }
