@@ -33,8 +33,8 @@ import EncryptPage from './pages/EncryptPage';
 import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import ContactPage from './pages/ContactPage';
-import DocumentEditor from './components/DocumentEditor';
-import DocumentSidebar from './components/DocumentSidebar';
+import BookStore from './components/BookStore';
+// import DocumentSidebar from './components/DocumentSidebar'; // Removed for bookstore"
 import HandCashCallback from './components/HandCashCallback';
 import BapPage from './pages/BapPage';
 import MAIPPage from './pages/MAIPPage';
@@ -73,7 +73,7 @@ function App() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [showBitcoinMenu, setShowBitcoinMenu] = useState(false);
-  const [showWriterMenu, setShowWriterMenu] = useState(false);
+  const [showBooksMenu, setShowBooksMenu] = useState(false);
   const [showDevelopersMenu, setShowDevelopersMenu] = useState(false);
   const [sidebarRefresh, setSidebarRefresh] = useState(0);
   const [showExchange, setShowExchange] = useState(false);
@@ -156,7 +156,7 @@ function App() {
   // Set app title when running in Bitcoin OS
   useEffect(() => {
     if (isInOS) {
-      setTitle('Bitcoin Writer');
+      setTitle('Bitcoin Books');
     }
   }, [isInOS, setTitle]);
 
@@ -358,7 +358,7 @@ function App() {
       <Route path="/*" element={
         isLoading ? (
           <div className="App">
-            <div className="loading">Loading Bitcoin Writer...</div>
+            <div className="loading">Loading Bitcoin Books...</div>
           </div>
         ) : (
           <div className="App">
@@ -380,21 +380,21 @@ function App() {
                       <div className="bitcoin-menu">
                         <div className="menu-header">
                           <div className="bitcoin-logo-small">₿</div>
-                          <span>Bitcoin Writer</span>
+                          <span>Bitcoin Books</span>
                         </div>
                         <div className="menu-separator" />
                         <div className="menu-item" onClick={() => {
                           window.location.href = '/';
                           setShowBitcoinMenu(false);
                         }}>
-                          <span>📝</span> Bitcoin Writer
+                          <span>📚</span> Bitcoin Books
                         </div>
                         <div className="menu-separator" />
                         <div className="menu-item" onClick={() => {
-                          alert('Bitcoin Writer v1.0\n\nSecure blockchain document writing platform\n\n© 2025 The Bitcoin Corporation LTD\nBuilt on Bitcoin SV blockchain');
+                          alert('Bitcoin Books v1.0\n\nCurated Bitcoin and cryptocurrency book marketplace\n\n© 2025 The Bitcoin Corporation LTD\nBuilt on Bitcoin SV blockchain');
                           setShowBitcoinMenu(false);
                         }}>
-                          <span>ℹ️</span> About Bitcoin Writer
+                          <span>ℹ️</span> About Bitcoin Books
                         </div>
                         <div className="menu-separator" />
                         {isAuthenticated && (
@@ -410,36 +410,36 @@ function App() {
                   )}
                 </div>
                 
-                <div className="writer-menu-container">
+                <div className="books-menu-container">
                   <button 
-                    className="writer-menu-button"
-                    onClick={() => setShowWriterMenu(!showWriterMenu)}
-                    aria-label="Writer Menu"
+                    className="books-menu-button"
+                    onClick={() => setShowBooksMenu(!showBooksMenu))
+                    aria-label="Books Menu"
                   >
-                    Bitcoin Writer
+                    Bitcoin Books
                   </button>
-                  {showWriterMenu && (
+                  {showBooksMenu && (
                     <>
-                      <div className="menu-overlay" onClick={() => setShowWriterMenu(false)} />
-                      <div className="writer-menu">
+                      <div className="menu-overlay" onClick={() => setShowBooksMenu(false)} />
+                      <div className="books-menu">
                         <div className="menu-item" onClick={() => {
                           // TODO: Implement Open
                           alert('Open functionality coming soon');
-                          setShowWriterMenu(false);
+                          setShowBooksMenu(false);
                         }}>
                           <span>📂</span> Open
                         </div>
                         <div className="menu-item" onClick={() => {
                           // TODO: Implement Save
                           (document.querySelector('.save-btn-mobile, [title*="Save"]') as HTMLElement)?.click();
-                          setShowWriterMenu(false);
+                          setShowBooksMenu(false);
                         }}>
                           <span>💾</span> Save
                         </div>
                         <div className="menu-item" onClick={() => {
                           // TODO: Implement Save As
                           alert('Save As functionality coming soon');
-                          setShowWriterMenu(false);
+                          setShowBooksMenu(false);
                         }}>
                           <span>📋</span> Save As
                         </div>
@@ -447,14 +447,14 @@ function App() {
                         <div className="menu-item" onClick={() => {
                           // TODO: Implement Encrypt
                           (document.querySelector('[title*="Encrypt"]') as HTMLElement)?.click();
-                          setShowWriterMenu(false);
+                          setShowBooksMenu(false);
                         }}>
                           <span>🔒</span> Encrypt
                         </div>
                         <div className="menu-item" onClick={() => {
                           // TODO: Implement Decrypt
                           (document.querySelector('[title*="Decrypt"]') as HTMLElement)?.click();
-                          setShowWriterMenu(false);
+                          setShowBooksMenu(false);
                         }}>
                           <span>🔓</span> Decrypt
                         </div>
@@ -462,28 +462,28 @@ function App() {
                         <div className="menu-item" onClick={() => {
                           // Dispatch event to open tokenize modal
                           window.dispatchEvent(new CustomEvent('openTokenizeModal'));
-                          setShowWriterMenu(false);
+                          setShowBooksMenu(false);
                         }}>
                           <span>🎨</span> Create Bitcoin Asset
                         </div>
                         <div className="menu-item" onClick={() => {
                           // TODO: Implement Paywall
                           (document.querySelector('[title*="Set price"]') as HTMLElement)?.click();
-                          setShowWriterMenu(false);
+                          setShowBooksMenu(false);
                         }}>
                           <span>💰</span> Paywall
                         </div>
                         <div className="menu-item" onClick={() => {
                           // TODO: Implement Publish
                           (document.querySelector('[title*="Publish"]') as HTMLElement)?.click();
-                          setShowWriterMenu(false);
+                          setShowBooksMenu(false);
                         }}>
                           <span>🌍</span> Publish
                         </div>
                         <div className="menu-item" onClick={() => {
                           // Dispatch event to open Twitter modal
                           window.dispatchEvent(new CustomEvent('openTwitterModal'));
-                          setShowWriterMenu(false);
+                          setShowBooksMenu(false);
                         }}>
                           <span>🐦</span> Post to Twitter
                         </div>
@@ -596,10 +596,10 @@ function App() {
                     }}
                     title="Return to main view"
                   >
-                    <span style={{color: '#ff9500'}}>Bitcoin</span> Writer
+                    <span style={{color: '#ff9500'}}>Bitcoin</span> Books
                   </h1>
                 </div>
-                <p className="app-subtitle">Encrypt, publish and sell shares in your work</p>
+                <p className="app-subtitle">Discover and purchase Bitcoin and cryptocurrency books</p>
               </div>
               
               {/* Auth and mobile menu on the right */}
@@ -627,14 +627,14 @@ function App() {
             </header>
 
             {/* Click overlay to close dropdowns */}
-            {(showUserDropdown || showMobileMenu || showBitcoinMenu || showWriterMenu) && (
+            {(showUserDropdown || showMobileMenu || showBitcoinMenu || showBooksMenu) && (
               <div 
                 className="overlay" 
                 onClick={() => {
                   setShowUserDropdown(false);
                   setShowMobileMenu(false);
                   setShowBitcoinMenu(false);
-                  setShowWriterMenu(false);
+                  setShowBooksMenu(false);
                 }}
                 style={{
                   position: 'fixed',
@@ -678,37 +678,7 @@ function App() {
                           >
                             📄 New Document
                           </button>
-                          <DocumentSidebar
-                            documentService={documentService}
-                            isAuthenticated={isAuthenticated}
-                            onDocumentSelect={(doc) => {
-                              setCurrentDocument(doc);
-                              setShowMobileMenu(false);
-                            }}
-                            onNewDocument={() => {
-                              setCurrentDocument(null);
-                              setShowExchange(false);
-                              setShowMobileMenu(false);
-                              // Trigger immediate sidebar refresh
-                              setSidebarRefresh(prev => prev + 1);
-                            }}
-                            onPublishDocument={(doc) => {
-                              // Add document to published list for the exchange
-                              setPublishedDocuments(prev => {
-                                // Check if already published
-                                if (prev.some(d => d.id === doc.id)) {
-                                  console.log('Document already published');
-                                  return prev;
-                                }
-                                console.log('Publishing document to exchange:', doc);
-                                return [...prev, doc];
-                              });
-                              setShowMobileMenu(false);
-                            }}
-                            currentDocumentId={currentDocument?.id}
-                            isMobile={true}
-                            refreshTrigger={sidebarRefresh}
-                          />
+                          {/* DocumentSidebar removed for bookstore - not needed for book browsing */}
                         </div>
 
                         <div className="mobile-menu-section">
@@ -783,31 +753,7 @@ function App() {
               </div>
             )}
             <div className={`app-container ${isInOS ? '' : (!isMobile && devSidebarCollapsed ? 'with-dev-sidebar-collapsed' : '')} ${isInOS ? '' : (!isMobile && !devSidebarCollapsed ? 'with-dev-sidebar' : '')}`}>
-              <DocumentSidebar
-                documentService={documentService}
-                isAuthenticated={isAuthenticated}
-                onDocumentSelect={(doc) => setCurrentDocument(doc)}
-                onNewDocument={() => {
-                  setCurrentDocument(null);
-                  setShowExchange(false);
-                  // Trigger immediate sidebar refresh
-                  setSidebarRefresh(prev => prev + 1);
-                }}
-                onPublishDocument={(doc) => {
-                  // Add document to published list for the exchange
-                  setPublishedDocuments(prev => {
-                    // Check if already published
-                    if (prev.some(d => d.id === doc.id)) {
-                      console.log('Document already published');
-                      return prev;
-                    }
-                    console.log('Publishing document to exchange:', doc);
-                    return [...prev, doc];
-                  });
-                }}
-                currentDocumentId={currentDocument?.id}
-                refreshTrigger={sidebarRefresh}
-              />
+              {/* DocumentSidebar removed for bookstore - not needed for book browsing */}
               <main>
                 {showFeatures ? (
                   <div className="features-view-wrapper">
@@ -840,17 +786,12 @@ function App() {
                     onClose={() => setActiveAppOverview(null)}
                   />
                 ) : (
-                  <DocumentEditor 
-                    documentService={documentService}
+                  <BookStore 
                     isAuthenticated={isAuthenticated}
-                    currentDocument={currentDocument}
-                    onDocumentUpdate={setCurrentDocument}
-                    onDocumentSaved={() => {
-                      // Trigger sidebar refresh after document is saved
-                      setSidebarRefresh(prev => prev + 1);
+                    onCartUpdate={(itemCount) => {
+                      // Update cart count in taskbar
+                      console.log('Cart updated:', itemCount);
                     }}
-                    showAIChat={showAIChat}
-                    onToggleAIChat={() => setShowAIChat(!showAIChat)}
                   />
                 )}
               </main>
