@@ -1,11 +1,5 @@
 {
-  "functions": {
-    "index.html": {
-      "runtime": "@vercel/static"
-    }
-  },
-  "routes": [
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  "buildCommand": "echo 'Static site - no build needed'",
+  "outputDirectory": ".",
+  "devCommand": "python3 -m http.server 3000"
 }
