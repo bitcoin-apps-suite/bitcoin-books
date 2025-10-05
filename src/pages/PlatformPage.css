@@ -16,13 +16,13 @@
   text-align: center;
   margin-bottom: 4rem;
   padding: 3rem 0;
-  border-bottom: 1px solid rgba(255, 149, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 122, 255, 0.2);
 }
 
 .platform-header h1 {
   font-size: 3.5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ff9500 0%, #ff6b00 100%);
+  background: linear-gradient(135deg, #007AFF 0%, #FF007F 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -40,9 +40,9 @@
 
 .platform-section h2 {
   font-size: 2rem;
-  color: #ff9500;
+  color: #007AFF;
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid rgba(255, 149, 0, 0.3);
+  border-bottom: 2px solid rgba(0, 122, 255, 0.3);
   padding-bottom: 0.5rem;
 }
 
@@ -66,7 +66,7 @@
 
 .step {
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 149, 0, 0.4);
+  border: 1px solid rgba(0, 122, 255, 0.4);
   border-radius: 12px;
   padding: 2rem;
   position: relative;
@@ -77,15 +77,15 @@
 
 .step:hover {
   transform: translateY(-4px);
-  border-color: #ff9500;
-  box-shadow: 0 8px 24px rgba(255, 149, 0, 0.2);
+  border-color: #007AFF;
+  box-shadow: 0 8px 24px rgba(0, 122, 255, 0.2);
 }
 
 .step-number {
   position: absolute;
   top: -20px;
   left: 20px;
-  background: linear-gradient(135deg, #ff9500 0%, #ff6b00 100%);
+  background: linear-gradient(135deg, #007AFF 0%, #FF007F 100%);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -131,11 +131,11 @@
   padding: 2rem;
   text-align: center;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 149, 0, 0.35);
+  border: 1px solid rgba(0, 122, 255, 0.35);
 }
 
 .feature:hover {
-  border-color: rgba(255, 149, 0, 0.5);
+  border-color: rgba(0, 122, 255, 0.5);
   transform: translateY(-2px);
 }
 
@@ -145,7 +145,7 @@
 }
 
 .feature h3 {
-  color: #ff9500;
+  color: #007AFF;
   margin-bottom: 1rem;
 }
 
@@ -159,10 +159,10 @@
 
 /* Developer Info */
 .developer-info {
-  background: rgba(255, 149, 0, 0.08);
+  background: rgba(0, 122, 255, 0.08);
   border-radius: 12px;
   padding: 2rem;
-  border: 1px solid rgba(255, 149, 0, 0.3);
+  border: 1px solid rgba(0, 122, 255, 0.3);
 }
 
 .developer-info p {
@@ -173,7 +173,7 @@
 }
 
 .developer-info h3 {
-  color: #ff9500;
+  color: #007AFF;
   margin-bottom: 1rem;
   margin-top: 2rem;
 }
@@ -201,7 +201,7 @@
   content: "▸";
   position: absolute;
   left: 0;
-  color: #ff9500;
+  color: #007AFF;
 }
 
 /* Use Cases */
@@ -214,13 +214,13 @@
 
 .use-case {
   background: rgba(255, 255, 255, 0.03);
-  border-left: 4px solid #ff9500;
+  border-left: 4px solid #007AFF;
   padding: 1.5rem;
   transition: all 0.3s ease;
 }
 
 .use-case:hover {
-  background: rgba(255, 149, 0, 0.05);
+  background: rgba(0, 122, 255, 0.05);
   transform: translateX(4px);
 }
 
@@ -250,11 +250,11 @@
 
 /* CTA Section */
 .cta-section {
-  background: linear-gradient(135deg, rgba(255, 149, 0, 0.1) 0%, rgba(255, 107, 0, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(255, 107, 0, 0.1) 100%);
   border-radius: 16px;
   padding: 3rem;
   text-align: center;
-  border: 1px solid rgba(255, 149, 0, 0.3);
+  border: 1px solid rgba(0, 122, 255, 0.3);
 }
 
 .cta-section h2 {
@@ -284,23 +284,23 @@
 }
 
 .cta-button.primary {
-  background: linear-gradient(135deg, #ff9500 0%, #ff6b00 100%);
+  background: linear-gradient(135deg, #007AFF 0%, #FF007F 100%);
   color: #fff;
 }
 
 .cta-button.primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 149, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 122, 255, 0.4);
 }
 
 .cta-button.secondary {
   background: transparent;
-  color: #ff9500;
-  border: 2px solid #ff9500;
+  color: #007AFF;
+  border: 2px solid #007AFF;
 }
 
 .cta-button.secondary:hover {
-  background: rgba(255, 149, 0, 0.1);
+  background: rgba(0, 122, 255, 0.1);
   transform: translateY(-2px);
 }
 

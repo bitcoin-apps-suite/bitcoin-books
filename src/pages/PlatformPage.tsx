@@ -6,17 +6,17 @@ const PlatformPage: React.FC = () => {
   return (
     <div className="platform-page">
       <div className="platform-header">
-        <h1>Bitcoin Writer Platform</h1>
-        <p className="tagline">Write Once, Preserve Forever on the Blockchain</p>
+        <h1>Bitcoin Books Platform</h1>
+        <p className="tagline">Academic Publishing & Decentralized Library Management</p>
       </div>
 
       <section className="platform-section">
-        <h2>What is Bitcoin Writer?</h2>
+        <h2>What is Bitcoin Books?</h2>
         <p>
-          Bitcoin Writer is a revolutionary document platform that transforms your writing into 
-          verifiable blockchain assets. Every keystroke is automatically hashed to the Bitcoin SV 
-          blockchain, creating a permanent, timestamped record of your work with cryptographic 
-          proof of authorship and version history.
+          Bitcoin Books is a comprehensive academic publishing and library management platform that combines 
+          traditional library science with blockchain technology. Our platform serves both individual users 
+          with secure document storage and academic institutions with professional-grade library management, 
+          peer review systems, and tokenized research incentives.
         </p>
       </section>
 
@@ -25,36 +25,34 @@ const PlatformPage: React.FC = () => {
         <div className="how-it-works-grid">
           <div className="step">
             <div className="step-number">1</div>
-            <h3>Write Your Document</h3>
+            <h3>Personal Document Storage</h3>
             <p>
-              Start writing in our editor. As you type, your document is automatically saved 
-              and prepared for blockchain storage.
+              Individual users can write and store documents with end-to-end encryption 
+              using HandCash authentication for secure, permanent blockchain storage.
             </p>
           </div>
           <div className="step">
             <div className="step-number">2</div>
-            <h3>Automatic Hashing</h3>
+            <h3>Academic Peer Review</h3>
             <p>
-              When you stop typing, Bitcoin Writer creates a cryptographic hash of your 
-              document. Each new version contains the hash of the previous version, 
-              creating an unbreakable chain of authenticity.
+              Institutions can manage comprehensive peer review workflows with transparent 
+              academic reputation scoring and automated reviewer assignment.
             </p>
           </div>
           <div className="step">
             <div className="step-number">3</div>
-            <h3>Blockchain Storage</h3>
+            <h3>Library Management</h3>
             <p>
-              Your document is inscribed onto the Bitcoin SV blockchain using micro-ordinals, 
-              making it permanently accessible and verifiable by anyone, forever.
+              Professional library cataloging with MARC records, circulation management, 
+              and multi-institutional collaboration built on the proven Koha foundation.
             </p>
           </div>
           <div className="step">
             <div className="step-number">4</div>
-            <h3>Value Creation</h3>
+            <h3>Tokenized Publishing</h3>
             <p>
-              Your document becomes a unique digital asset (UTXO) that accretes value over 
-              time. Each revision adds to its history and worth, like a coin collecting 
-              inscriptions.
+              Academic publications become blockchain tokens with smart contract revenue 
+              sharing for authors, reviewers, editors, and institutions.
             </p>
           </div>
         </div>
@@ -65,33 +63,33 @@ const PlatformPage: React.FC = () => {
         <div className="features-grid">
           <div className="feature">
             <div className="feature-icon">🔒</div>
-            <h3>Immutable Storage</h3>
-            <p>Once written to the blockchain, your documents cannot be altered or deleted</p>
+            <h3>Encrypted Document Storage</h3>
+            <p>Personal documents encrypted client-side with HandCash wallet authentication</p>
           </div>
           <div className="feature">
-            <div className="feature-icon">⏰</div>
-            <h3>Timestamped Forever</h3>
-            <p>Every version has a permanent timestamp proving when it was created</p>
+            <div className="feature-icon">📚</div>
+            <h3>Professional Library Management</h3>
+            <p>Full Koha ILS integration with MARC cataloging and circulation management</p>
           </div>
           <div className="feature">
-            <div className="feature-icon">🔐</div>
-            <h3>End-to-End Encryption</h3>
-            <p>Optional encryption ensures only you and chosen readers can access content</p>
+            <div className="feature-icon">🎓</div>
+            <h3>Academic Peer Review</h3>
+            <p>Comprehensive peer review workflows with transparent reputation scoring</p>
           </div>
           <div className="feature">
             <div className="feature-icon">💎</div>
-            <h3>Bitcoin OS Assets</h3>
-            <p>Save documents as Bitcoin OS assets with built-in ownership and royalties</p>
+            <h3>Tokenized Research</h3>
+            <p>Academic publications as blockchain tokens with automated revenue sharing</p>
           </div>
           <div className="feature">
-            <div className="feature-icon">🌍</div>
-            <h3>Global Publishing Network</h3>
-            <p>Publish to a legally compliant, scalable network that respects both creators and law</p>
+            <div className="feature-icon">⚖️</div>
+            <h3>Regulatory Compliance</h3>
+            <p>Securities law compliant tokenization with court-ordered dissolution mechanisms</p>
           </div>
           <div className="feature">
-            <div className="feature-icon">💰</div>
-            <h3>Micropayments</h3>
-            <p>Readers can pay tiny amounts to access premium content instantly</p>
+            <div className="feature-icon">🌐</div>
+            <h3>Multi-Institutional</h3>
+            <p>Collaborate across institutions with standardized academic workflows</p>
           </div>
         </div>
       </section>
@@ -101,25 +99,25 @@ const PlatformPage: React.FC = () => {
         <div className="developer-info">
           <h3>Open Source & Decentralized</h3>
           <p>
-            Bitcoin Writer is built on open-source principles with a decentralized architecture. 
-            Developers can contribute to the platform, build integrations, or fork the project 
-            to create their own blockchain-based writing applications.
+            Bitcoin Books is built on open-source principles combining the proven Koha library 
+            system with modern blockchain technology. Developers can contribute to academic workflows, 
+            library management features, or blockchain integration components.
           </p>
           
           <h3>Technical Stack</h3>
           <ul>
-            <li><strong>Frontend:</strong> React, TypeScript, Web3 Integration</li>
-            <li><strong>Blockchain:</strong> Bitcoin SV, Micro-ordinals Protocol</li>
-            <li><strong>Storage:</strong> IPFS for large files, BSV for metadata</li>
-            <li><strong>Payments:</strong> HandCash Connect SDK</li>
-            <li><strong>Smart Contracts:</strong> sCrypt for advanced features</li>
+            <li><strong>Academic Platform:</strong> Perl, MySQL/MariaDB, Apache (Koha foundation)</li>
+            <li><strong>Document App:</strong> React, TypeScript, HandCash Integration</li>
+            <li><strong>Blockchain:</strong> Bitcoin SV, Smart Contracts, Tokenization</li>
+            <li><strong>Storage:</strong> Encrypted client-side, BSV blockchain</li>
+            <li><strong>Libraries:</strong> MARC cataloging, multi-institutional collaboration</li>
           </ul>
 
-          <h3>BWRITER Token</h3>
+          <h3>Dual Licensing</h3>
           <p>
-            The platform uses BWRITER tokens to incentivize development and reward contributors. 
-            Developers earn tokens by completing tasks, fixing bugs, and adding features. 
-            The token distribution is transparent and managed through GitHub issues.
+            The platform uses dual licensing: GPL v3 for the core library system (Koha compatibility) 
+            and BSV Open License for blockchain components. This ensures both academic standards 
+            compliance and patent protection for innovative blockchain features.
           </p>
         </div>
       </section>
@@ -128,28 +126,28 @@ const PlatformPage: React.FC = () => {
         <h2>Use Cases</h2>
         <div className="use-cases">
           <div className="use-case">
-            <h3>📚 Authors & Publishers</h3>
-            <p>Publish books with proof of authorship and automatic royalty distribution</p>
+            <h3>🏛️ Academic Institutions</h3>
+            <p>Manage library collections, peer review, and research collaboration with blockchain transparency</p>
           </div>
           <div className="use-case">
-            <h3>📰 Journalists</h3>
-            <p>Create articles with verifiable timestamps and cryptographic proof of authorship</p>
+            <h3>🎓 Researchers & Academics</h3>
+            <p>Publish papers with tokenized incentives, transparent peer review, and reputation scoring</p>
           </div>
           <div className="use-case">
-            <h3>🎓 Academics</h3>
-            <p>Establish priority for research with immutable publication dates</p>
+            <h3>📚 Publishers & Editors</h3>
+            <p>Streamline academic publishing with automated workflows and smart contract revenue sharing</p>
           </div>
           <div className="use-case">
-            <h3>⚖️ Legal Documents</h3>
-            <p>Store contracts and agreements with cryptographic proof of authenticity</p>
+            <h3>📖 Individual Writers</h3>
+            <p>Store personal documents securely with encrypted blockchain storage and wallet authentication</p>
           </div>
           <div className="use-case">
-            <h3>💭 Personal Archives</h3>
-            <p>Preserve memoirs, journals, and family histories forever</p>
+            <h3>🔬 Research Institutions</h3>
+            <p>Track funding transparency, collaboration networks, and multi-institutional projects</p>
           </div>
           <div className="use-case">
-            <h3>🎨 Creative Writing</h3>
-            <p>Monetize poetry, stories, and scripts with micropayment access</p>
+            <h3>📋 Librarians</h3>
+            <p>Professional cataloging, circulation management, and digital preservation on blockchain</p>
           </div>
         </div>
       </section>
@@ -157,25 +155,25 @@ const PlatformPage: React.FC = () => {
       <section className="platform-section">
         <h2>The Vision</h2>
         <p className="vision-text">
-          Bitcoin Writer reimagines publishing for the digital age. By combining the permanence 
-          of blockchain with the flexibility of modern writing tools, we're creating a new 
-          paradigm where writers truly own their work, readers can verify authenticity, and 
-          great writing becomes a lasting digital asset.
+          Bitcoin Books reimagines academic publishing and library management for the digital age. 
+          By combining the proven excellence of traditional library science with transparent blockchain 
+          technology, we're creating a new paradigm where researchers truly own their work, institutions 
+          can verify authenticity, and academic collaboration transcends traditional boundaries.
         </p>
         <p className="vision-text">
-          In a world where digital content can be easily copied, modified, or deleted, 
-          Bitcoin Writer provides the solution: immutable, verifiable, and valuable writing 
-          that exists forever on the world's most secure distributed ledger.
+          Our platform strengthens the legacy publishing industry through innovation rather than disruption, 
+          providing both individual researchers and academic institutions with the tools they need for 
+          transparent, incentivized, and globally collaborative scholarly communication.
         </p>
       </section>
 
       <section className="platform-section cta-section">
         <h2>Get Started</h2>
-        <p>Join the future of decentralized publishing</p>
+        <p>Join the future of academic publishing and library management</p>
         <div className="cta-buttons">
           <a href="/signup" className="cta-button primary">Sign Up for Updates</a>
           <a href="/docs" className="cta-button secondary">Read Documentation</a>
-          <a href="https://github.com/bitcoin-apps-suite/bitcoin-writer" 
+          <a href="https://github.com/bitcoin-apps-suite/bitcoin-books" 
              target="_blank" 
              rel="noopener noreferrer" 
              className="cta-button secondary">
