@@ -45,7 +45,7 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #ff9900;
+  border-color: #007AFF;
 }
 
 .header-actions {
@@ -68,7 +68,7 @@
 }
 
 .filter-toggle:hover {
-  border-color: #ff9900;
+  border-color: #007AFF;
 }
 
 .sort-select {
@@ -96,7 +96,7 @@
 }
 
 .view-toggle button.active {
-  background: #ff9900;
+  background: #007AFF;
   color: white;
 }
 
@@ -214,7 +214,7 @@
 .book-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  border-color: #ff9900;
+  border-color: #007AFF;
 }
 
 .book-card.list {
@@ -265,7 +265,7 @@
 }
 
 .badge.featured {
-  background: #ff9900;
+  background: #007AFF;
 }
 
 .book-actions {
@@ -377,7 +377,7 @@
 .current-price {
   font-size: 20px;
   font-weight: 700;
-  color: #b12704;
+  color: #FF007F;
 }
 
 .original-price {
@@ -398,7 +398,7 @@
 .add-to-cart-btn {
   width: 100%;
   padding: 12px;
-  background: #ff9900;
+  background: #007AFF;
   color: white;
   border: none;
   border-radius: 6px;
@@ -412,7 +412,7 @@
 }
 
 .add-to-cart-btn:hover {
-  background: #e68a00;
+  background: #0056CC;
 }
 
 .add-to-cart-btn.in-cart {
@@ -564,7 +564,7 @@
 }
 
 .preview-btn {
-  background: #007185;
+  background: #FF007F;
   color: white;
 }
 
@@ -578,7 +578,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  background: #ff9900;
+  background: #007AFF;
   color: white;
   border: none;
   border-radius: 6px;
@@ -588,7 +588,7 @@
 }
 
 .cart-toggle:hover {
-  background: #e68a00;
+  background: #0056CC;
 }
 
 .cart-sidebar {
@@ -688,7 +688,7 @@
 
 .cart-item-price {
   font-weight: 600;
-  color: #b12704;
+  color: #FF007F;
   font-size: 16px;
 }
 
@@ -727,7 +727,7 @@
 .checkout-btn {
   width: 100%;
   padding: 14px;
-  background: #ff9900;
+  background: #007AFF;
   color: white;
   border: none;
   border-radius: 6px;
@@ -738,7 +738,7 @@
 }
 
 .checkout-btn:hover {
-  background: #e68a00;
+  background: #0056CC;
 }
 
 .cart-overlay {

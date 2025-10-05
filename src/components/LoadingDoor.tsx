@@ -39,7 +39,7 @@ const LoadingDoor: React.FC<LoadingDoorProps> = ({ onComplete }) => {
           <div className="bitcoin-logo">₿</div>
           <h1 className="door-title">
             <span className="bitcoin-text">Bitcoin</span>
-            <span className="writer-text">Writer</span>
+            <span className="writer-text">Books</span>
           </h1>
         </div>
       </div>
