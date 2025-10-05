@@ -40,115 +40,183 @@ const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUp
   const [cart, setCart] = useState<string[]>([]);
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [showCart, setShowCart] = useState(false);
 
-  // Sample book data - in a real app this would come from an API
+  // Sample book data - trolling BTC edition
   const sampleBooks: Book[] = [
     {
       id: '1',
-      title: 'The Bitcoin Standard',
-      author: 'Saifedean Ammous',
-      price: 24.99,
-      originalPrice: 29.99,
-      rating: 4.5,
-      reviewCount: 1247,
-      description: 'The definitive book on Bitcoin and its revolutionary impact on monetary systems.',
-      category: 'economics',
-      publishedDate: '2018-03-23',
-      pages: 304,
+      title: 'Why I Sold My Bitcoin for Tulips',
+      author: 'Chad Maximalist',
+      price: 12.99,
+      originalPrice: 69.99,
+      rating: 1.2,
+      reviewCount: 2147,
+      description: 'A former BTC maxi\'s journey to enlightenment. Discover why tulip bulbs have more utility than digital rocks. Includes 200 pages of cope and seethe.',
+      category: 'comedy',
+      publishedDate: '2024-12-01',
+      pages: 420,
       format: 'ebook',
-      coverUrl: 'https://via.placeholder.com/200x300?text=Bitcoin+Standard',
+      coverUrl: 'https://images.unsplash.com/photo-1520637836862-4d197d17c72a?w=200&h=300&fit=crop&crop=center',  // Tulip field
       featured: true,
       bestseller: true,
-      tags: ['bitcoin', 'economics', 'monetary-theory', 'cryptocurrency']
+      tags: ['btc', 'tulips', 'cope', 'reality-check']
     },
     {
       id: '2',
-      title: 'Mastering Bitcoin',
-      author: 'Andreas Antonopoulos',
-      price: 39.99,
-      rating: 4.7,
-      reviewCount: 892,
-      description: 'A comprehensive technical guide to Bitcoin and blockchain technology.',
+      title: 'Lightning Network: Still Coming Soon™',
+      author: 'Anonymous Dev',
+      price: 18.99,
+      rating: 2.1,
+      reviewCount: 1892,
+      description: 'The definitive guide to a payment system that\'s been "18 months away" for the past 8 years. Perfect for anyone who enjoys waiting forever.',
       category: 'technical',
-      publishedDate: '2017-07-15',
-      pages: 415,
-      format: 'ebook',
-      coverUrl: 'https://via.placeholder.com/200x300?text=Mastering+Bitcoin',
+      publishedDate: '2016-01-01',
+      pages: 5,
+      format: 'paperback',
+      coverUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=200&h=300&fit=crop&crop=center',  // Lightning
       featured: true,
-      tags: ['bitcoin', 'technical', 'blockchain', 'programming']
+      tags: ['lightning', 'vaporware', 'soon', 'technical-debt']
     },
     {
       id: '3',
-      title: 'Programming Bitcoin',
-      author: 'Jimmy Song',
-      price: 34.99,
-      rating: 4.3,
-      reviewCount: 523,
-      description: 'Learn how to program Bitcoin from scratch using Python.',
-      category: 'technical',
-      publishedDate: '2019-02-08',
-      pages: 322,
-      format: 'ebook',
-      coverUrl: 'https://via.placeholder.com/200x300?text=Programming+Bitcoin',
-      tags: ['bitcoin', 'programming', 'python', 'technical']
+      title: '$100k by End of Year (Every Year)',
+      author: 'Hopium Dealer',
+      price: 99.99,
+      rating: 0.5,
+      reviewCount: 5823,
+      description: 'Learn the ancient art of moving goalposts and predicting BTC prices. Includes exclusive charts drawn in crayon and a complimentary hopium inhaler.',
+      category: 'fantasy',
+      publishedDate: '2021-01-01',
+      pages: 100,
+      format: 'hardcover',
+      coverUrl: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=200&h=300&fit=crop&crop=center',  // Money/charts
+      bestseller: false,
+      tags: ['hopium', 'predictions', 'delusion', 'copium']
     },
     {
       id: '4',
-      title: 'The Internet of Money',
-      author: 'Andreas Antonopoulos',
-      price: 19.99,
-      rating: 4.6,
+      title: 'Have Fun Staying Poor: A Guide to Alienating Friends',
+      author: 'Toxic Maxi',
+      price: 21.00,
+      rating: 1.8,
       reviewCount: 678,
-      description: 'A collection of talks about the importance of Bitcoin.',
-      category: 'philosophy',
-      publishedDate: '2016-09-12',
+      description: 'Master the art of being insufferable at dinner parties. Learn 50 ways to tell people about Bitcoin without them asking. Ruin relationships today!',
+      category: 'self-help',
+      publishedDate: '2020-03-15',
       pages: 152,
       format: 'audiobook',
-      coverUrl: 'https://via.placeholder.com/200x300?text=Internet+of+Money',
-      tags: ['bitcoin', 'philosophy', 'talks', 'economics']
+      coverUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop&crop=center',  // Sad/frustrated person
+      tags: ['toxic', 'maxi', 'cringe', 'social-suicide']
     },
     {
       id: '5',
-      title: 'Digital Gold',
-      author: 'Nathaniel Popper',
-      price: 22.99,
-      rating: 4.4,
+      title: 'The Energy FUD Chronicles',
+      author: 'Dr. Shill Bitcoin',
+      price: 15.99,
+      rating: 2.4,
       reviewCount: 445,
-      description: 'The untold story of Bitcoin and its early pioneers.',
-      category: 'history',
-      publishedDate: '2015-05-19',
+      description: 'Everything is actually good for Bitcoin, including melting glaciers and rolling blackouts. Mental gymnastics at Olympic levels.',
+      category: 'propaganda',
+      publishedDate: '2022-05-19',
       pages: 368,
       format: 'paperback',
-      coverUrl: 'https://via.placeholder.com/200x300?text=Digital+Gold',
-      bestseller: true,
-      tags: ['bitcoin', 'history', 'pioneers', 'story']
+      coverUrl: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=200&h=300&fit=crop&crop=center',  // Power plant/energy
+      bestseller: false,
+      tags: ['environment', 'cope', 'mental-gymnastics', 'fud']
     },
     {
       id: '6',
-      title: 'The Age of Cryptocurrency',
-      author: 'Paul Vigna & Michael J. Casey',
-      price: 18.99,
+      title: 'Orange Coin Bad: A Rational Analysis',
+      author: 'Prof. No-Coiner',
+      price: 8.99,
       originalPrice: 24.99,
-      rating: 4.2,
+      rating: 4.8,
       reviewCount: 356,
-      description: 'How Bitcoin and digital money are challenging the global economic order.',
+      description: 'Finally, someone with a brain explains why digital Beanie Babies aren\'t the future of money. Backed by actual economics and common sense.',
       category: 'economics',
-      publishedDate: '2015-01-27',
+      publishedDate: '2023-01-27',
       pages: 352,
       format: 'hardcover',
-      coverUrl: 'https://via.placeholder.com/200x300?text=Age+of+Crypto',
-      tags: ['cryptocurrency', 'economics', 'global-economy', 'digital-money']
+      coverUrl: 'https://images.unsplash.com/photo-1592659762303-90081d34b277?w=200&h=300&fit=crop&crop=center',  // Orange background
+      featured: true,
+      tags: ['reality', 'economics', 'sanity', 'no-coiner-wisdom']
+    },
+    {
+      id: '7',
+      title: 'My Journey from Ramen to Ramen',
+      author: 'Broke Hodler',
+      price: 3.50,
+      rating: 3.3,
+      reviewCount: 234,
+      description: 'A heartwarming tale of buying high, selling low, and learning that diamond hands are just expensive handcuffs. Comes with food stamps.',
+      category: 'autobiography',
+      publishedDate: '2023-11-16',
+      pages: 423,
+      format: 'ebook',
+      coverUrl: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&h=300&fit=crop&crop=center',  // Ramen noodles
+      tags: ['poverty', 'hodl', 'broke', 'diamond-hands']
+    },
+    {
+      id: '8',
+      title: 'Web3 is Going Just Great',
+      author: 'Molly White',
+      price: 25.99,
+      rating: 4.9,
+      reviewCount: 1187,
+      description: 'A real book by a real author documenting the real disasters in crypto. Spoiler alert: It\'s not going great. Includes actual facts and research.',
+      category: 'reality',
+      publishedDate: '2024-07-12',
+      pages: 425,
+      format: 'hardcover',
+      coverUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=200&h=300&fit=crop&crop=center',  // Computer/tech disaster
+      featured: true,
+      bestseller: true,
+      tags: ['web3', 'reality', 'disasters', 'molly-white']
+    },
+    {
+      id: '9',
+      title: 'Cope and Seethe: Advanced Techniques',
+      author: 'Maxi McBagHolder',
+      price: 69.42,
+      rating: 1.6,
+      reviewCount: 156,
+      description: 'When the number doesn\'t go up, this comprehensive guide teaches you 420 ways to blame everything except your investment choices. Now with more copium!',
+      category: 'self-help',
+      publishedDate: '2024-04-08',
+      pages: 287,
+      format: 'paperback',
+      coverUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=300&fit=crop&crop=center',  // Crying/emotional
+      tags: ['cope', 'seethe', 'bagholding', 'denial']
+    },
+    {
+      id: '10',
+      title: 'Central Bank Digital Currencies: The Real Digital Money',
+      author: 'Jerome Powell',
+      price: 23.99,
+      originalPrice: 28.99,
+      rating: 4.4,
+      reviewCount: 298,
+      description: 'Why governments will just create their own digital money instead of using speculative casino tokens. Includes chapters on "Why We Don\'t Need Proof of Waste".',
+      category: 'economics',
+      publishedDate: '2024-01-21',
+      pages: 264,
+      format: 'ebook',
+      coverUrl: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=200&h=300&fit=crop&crop=center',  // Digital/bank cards
+      tags: ['cbdc', 'government', 'real-digital-money', 'fed']
     }
   ];
 
   const categories = [
     { value: 'all', label: 'All Categories' },
-    { value: 'beginner', label: 'Beginner Guides' },
-    { value: 'technical', label: 'Technical' },
-    { value: 'economics', label: 'Economics' },
-    { value: 'trading', label: 'Trading & Investment' },
-    { value: 'history', label: 'History & Philosophy' },
-    { value: 'security', label: 'Security & Privacy' }
+    { value: 'comedy', label: 'Comedy & Satire' },
+    { value: 'technical', label: 'Technical Disasters' },
+    { value: 'economics', label: 'Real Economics' },
+    { value: 'fantasy', label: 'Fantasy & Delusion' },
+    { value: 'self-help', label: 'Self-Help & Cope' },
+    { value: 'propaganda', label: 'Propaganda' },
+    { value: 'autobiography', label: 'Autobiography' },
+    { value: 'reality', label: 'Reality Check' }
   ];
 
   const formats = [
@@ -156,7 +224,7 @@ const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUp
     { value: 'ebook', label: 'E-book' },
     { value: 'audiobook', label: 'Audiobook' },
     { value: 'hardcover', label: 'Hardcover' },
-    { value: 'paperback', label: 'Paperback' }
+    { value: 'paperback', label: 'Paperback' },
   ];
 
   const sortOptions = [
@@ -254,6 +322,65 @@ const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUp
 
     return stars;
   };
+
+  const getCartTotal = () => {
+    return cart.reduce((total, bookId) => {
+      const book = books.find(b => b.id === bookId);
+      return total + (book?.price || 0);
+    }, 0);
+  };
+
+  const getCartBooks = () => {
+    return cart.map(bookId => books.find(b => b.id === bookId)).filter(Boolean) as Book[];
+  };
+
+  const CartSidebar = () => (
+    <div className={`cart-sidebar ${showCart ? 'open' : ''}`}>
+      <div className="cart-header">
+        <h3>Shopping Cart ({cart.length})</h3>
+        <button onClick={() => setShowCart(false)}>×</button>
+      </div>
+      
+      <div className="cart-content">
+        {cart.length === 0 ? (
+          <div className="empty-cart">
+            <ShoppingCart size={48} />
+            <p>Your cart is empty</p>
+          </div>
+        ) : (
+          <>
+            <div className="cart-items">
+              {getCartBooks().map(book => (
+                <div key={book.id} className="cart-item">
+                  <img src={book.coverUrl} alt={book.title} className="cart-item-image" />
+                  <div className="cart-item-info">
+                    <h4>{book.title}</h4>
+                    <p>{book.author}</p>
+                    <span className="cart-item-price">${book.price}</span>
+                  </div>
+                  <button 
+                    onClick={() => removeFromCart(book.id)}
+                    className="remove-item"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+            
+            <div className="cart-footer">
+              <div className="cart-total">
+                <strong>Total: ${getCartTotal().toFixed(2)}</strong>
+              </div>
+              <button className="checkout-btn">
+                Proceed to Checkout
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
 
   const BookCard: React.FC<{ book: Book }> = ({ book }) => (
     <div className={`book-card ${viewMode}`} onClick={() => setSelectedBook(book)}>
@@ -376,6 +503,14 @@ const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUp
               List
             </button>
           </div>
+          
+          <button
+            className="cart-toggle"
+            onClick={() => setShowCart(true)}
+          >
+            <ShoppingCart />
+            Cart ({cart.length})
+          </button>
         </div>
       </div>
 
@@ -536,6 +671,14 @@ const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUp
             </div>
           </div>
         </div>
+      )}
+
+      {/* Shopping Cart Sidebar */}
+      <CartSidebar />
+
+      {/* Cart Overlay */}
+      {showCart && (
+        <div className="cart-overlay" onClick={() => setShowCart(false)} />
       )}
     </div>
   );

@@ -361,6 +361,7 @@ function App() {
             <div className="loading">Loading Bitcoin Books...</div>
           </div>
         ) : (
+          <>
           <div className="App">
             
             {/* Old macOS-style taskbar (kept for reference, can be removed later) */}
@@ -413,7 +414,7 @@ function App() {
                 <div className="books-menu-container">
                   <button 
                     className="books-menu-button"
-                    onClick={() => setShowBooksMenu(!showBooksMenu))
+                    onClick={() => setShowBooksMenu(!showBooksMenu)}
                     aria-label="Books Menu"
                   >
                     Bitcoin Books
@@ -798,6 +799,7 @@ function App() {
             </div>
             <Footer />
           </div>
+          </>
         )}
       />
       </Routes>
