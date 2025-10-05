@@ -356,13 +356,13 @@
 }
 
 .star.filled {
-  fill: #ffa500;
-  color: #ffa500;
+  fill: #007AFF;
+  color: #007AFF;
 }
 
 .star.half {
   fill: url(#half-star);
-  color: #ffa500;
+  color: #007AFF;
 }
 
 .rating-text {

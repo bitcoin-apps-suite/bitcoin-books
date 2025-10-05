@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   z-index: 10001; /* Above taskbar (10000) */
-  background: linear-gradient(135deg, #FF6B35, #F7931E);
+  background: linear-gradient(135deg, #007AFF, #FF007F);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
