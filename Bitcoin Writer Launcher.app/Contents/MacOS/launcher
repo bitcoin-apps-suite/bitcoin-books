@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Bitcoin Writer Launcher App
+# Kills port 1010 and starts Bitcoin Writer
+
+# Get the app bundle path and project directory
+APP_BUNDLE_PATH="$(dirname "$(dirname "$(dirname "$0")")")"
+PROJECT_DIR="/Users/b0ase/Projects/bitcoin-writer"
+
+echo "🔧 Bitcoin Writer Launcher"
+echo "=========================="
+echo "📂 Project Directory: $PROJECT_DIR"
+
+# Function to kill process on port 2010
+kill_port_2010() {
+    echo "🔍 Checking for processes on port 2010..."
+    PID=$(lsof -ti:2010 2>/dev/null)
+    if [ ! -z "$PID" ]; then
+        echo "🚫 Killing process $PID on port 2010..."
+        kill -9 $PID 2>/dev/null
+        sleep 2
+        echo "✅ Port 2010 cleared"
+    else
+        echo "✅ Port 2010 is free"
+    fi
+}
+
+# Function to start Bitcoin Writer
+start_bitcoin_writer() {
+    echo "🚀 Starting Bitcoin Writer on port 2010..."
+    cd "$PROJECT_DIR"
+    
+    # Check if we're in the right directory
+    if [ ! -f "package.json" ]; then
+        echo "❌ Error: Not in Bitcoin Writer directory"
+        osascript -e 'display alert "Bitcoin Writer Launcher Error" message "Could not find Bitcoin Writer project. Make sure the launcher is in the correct directory." as critical'
+        exit 1
+    fi
+    
+    # Check if node_modules exists
+    if [ ! -d "node_modules" ]; then
+        echo "📦 Installing dependencies..."
+        npm install --legacy-peer-deps
+    fi
+    
+    # Start the development server on port 2010 (no sudo needed!)
+    echo "🌐 Opening Bitcoin Writer at http://localhost:2010"
+    PORT=2010 npm start &
+    
+    # Wait a moment then open browser
+    sleep 5
+    open "http://localhost:2010"
+}
+
+# Show notification
+osascript -e 'display notification "Starting Bitcoin Writer..." with title "Bitcoin Writer Launcher"'
+
+# Main execution
+kill_port_2010
+start_bitcoin_writer

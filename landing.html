@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Books - Your Ultimate Cryptocurrency Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Amazon Ember", Arial, sans-serif;
+            line-height: 1.4;
+            color: #0f1111;
+            background-color: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            background-color: #232f3e;
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background-color: #131921;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .bitcoin-word {
+            background: linear-gradient(45deg, #f7931e, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 20px;
+            display: flex;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        .search-btn {
+            background-color: #febd69;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .header-nav {
+            background-color: #232f3e;
+            padding: 8px 16px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #485769;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #232f3e 0%, #131921 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background-color: #ff9900;
+            color: #0f1111;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #e68a00;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 40px 20px;
+            background-color: #f7f8f8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 24px;
+            color: #0f1111;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .category-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #0f1111;
+        }
+
+        .category-description {
+            color: #565959;
+            margin-bottom: 16px;
+        }
+
+        .view-more {
+            color: #007185;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .view-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Featured Books */
+        .featured-books {
+            padding: 40px 20px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .book-cover {
+            width: 120px;
+            height: 160px;
+            background: linear-gradient(135deg, #f7931e, #ff8c00);
+            margin: 0 auto 16px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .book-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #0f1111;
+        }
+
+        .book-author {
+            font-size: 14px;
+            color: #565959;
+            margin-bottom: 12px;
+        }
+
+        .book-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #b12704;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #232f3e;
+            color: white;
+            padding: 40px 20px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #485769;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .search-bar {
+                margin: 0;
+                max-width: none;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <a href="#" class="logo">
+                <span class="bitcoin-word">₿</span>Bitcoin Books
+            </a>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search books, authors, topics...">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="user-actions">
+                <a href="#" class="nav-link">Sign In</a>
+                <a href="#" class="nav-link">Cart (0)</a>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <a href="#" class="nav-link">All Categories</a>
+            <a href="#" class="nav-link">Best Sellers</a>
+            <a href="#" class="nav-link">New Releases</a>
+            <a href="#" class="nav-link">Free Books</a>
+            <a href="#" class="nav-link">Audiobooks</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Your Ultimate <span class="bitcoin-word">Bitcoin</span> Library</h1>
+            <p>Discover the most comprehensive collection of Bitcoin and cryptocurrency literature. From beginner guides to advanced technical documentation.</p>
+            <a href="#featured" class="cta-button">Start Reading Today</a>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">📚</div>
+                    <h3 class="category-title">Beginner Guides</h3>
+                    <p class="category-description">Perfect introduction to Bitcoin for newcomers. Learn the basics with easy-to-understand explanations.</p>
+                    <a href="#" class="view-more">View all beginner books →</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">⚙️</div>
+                    <h3 class="category-title">Technical</h3>
+                    <p class="category-description">Deep dive into Bitcoin's technical implementation, protocols, and development.</p>
+                    <a href="#" class="view-more">View technical books →</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💰</div>
+                    <h3 class="category-title">Economics</h3>
+                    <p class="category-description">Understand the economic principles and monetary theory behind Bitcoin.</p>
+                    <a href="#" class="view-more">View economics books →</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📈</div>
+                    <h3 class="category-title">Trading & Investment</h3>
+                    <p class="category-description">Learn strategies for trading and investing in Bitcoin and cryptocurrencies.</p>
+                    <a href="#" class="view-more">View trading books →</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🏛️</div>
+                    <h3 class="category-title">History & Philosophy</h3>
+                    <p class="category-description">Explore the origins, philosophy, and cultural impact of Bitcoin.</p>
+                    <a href="#" class="view-more">View history books →</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🔒</div>
+                    <h3 class="category-title">Security & Privacy</h3>
+                    <p class="category-description">Master Bitcoin security, privacy practices, and wallet management.</p>
+                    <a href="#" class="view-more">View security books →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books -->
+    <section class="featured-books" id="featured">
+        <div class="container">
+            <h2 class="section-title">Featured Books</h2>
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-cover">₿</div>
+                    <h3 class="book-title">The Bitcoin Standard</h3>
+                    <p class="book-author">by Saifedean Ammous</p>
+                    <p class="book-price">$24.99</p>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">📖</div>
+                    <h3 class="book-title">Mastering Bitcoin</h3>
+                    <p class="book-author">by Andreas Antonopoulos</p>
+                    <p class="book-price">$39.99</p>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">🔧</div>
+                    <h3 class="book-title">Programming Bitcoin</h3>
+                    <p class="book-author">by Jimmy Song</p>
+                    <p class="book-price">$34.99</p>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">💡</div>
+                    <h3 class="book-title">The Internet of Money</h3>
+                    <p class="book-author">by Andreas Antonopoulos</p>
+                    <p class="book-price">$19.99</p>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">🚀</div>
+                    <h3 class="book-title">Digital Gold</h3>
+                    <p class="book-author">by Nathaniel Popper</p>
+                    <p class="book-price">$22.99</p>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">⚡</div>
+                    <h3 class="book-title">The Lightning Network</h3>
+                    <p class="book-author">by Various Authors</p>
+                    <p class="book-price">$29.99</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Get to Know Us</h3>
+                <a href="#">About Bitcoin Books</a>
+                <a href="#">Careers</a>
+                <a href="#">Press Releases</a>
+                <a href="#">Investor Relations</a>
+            </div>
+            <div class="footer-section">
+                <h3>Make Money with Us</h3>
+                <a href="#">Publish with Us</a>
+                <a href="#">Author Program</a>
+                <a href="#">Affiliate Program</a>
+                <a href="#">Advertise Your Books</a>
+            </div>
+            <div class="footer-section">
+                <h3>Payment Products</h3>
+                <a href="#">Bitcoin Payments</a>
+                <a href="#">Lightning Network</a>
+                <a href="#">Gift Cards</a>
+                <a href="#">Payment Methods</a>
+            </div>
+            <div class="footer-section">
+                <h3>Let Us Help You</h3>
+                <a href="#">Your Account</a>
+                <a href="#">Your Orders</a>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">Help Center</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bitcoin Books. All rights reserved. | Built on Bitcoin principles.</p>
+        </div>
+    </footer>
+</body>
+</html>
