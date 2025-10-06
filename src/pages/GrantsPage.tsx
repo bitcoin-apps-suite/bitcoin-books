@@ -45,9 +45,9 @@ const GrantsPage: React.FC = () => {
             <div className="grants-hero-icon">
               <Flower2 size={64} />
             </div>
-            <h1>Bitcoin Writer <span style={{color: '#FF6B35'}}>Grants</span></h1>
+            <h1>Bitcoin Books <span style={{color: '#007AFF'}}>Grants</span></h1>
             <p className="grants-tagline">
-              $BWRITER token awards for quality submissions, plus public discovery platform for independent funding
+              $BWRITER token awards for quality book submissions, plus public discovery platform for independent funding
             </p>
             <div className="grants-badge">DUAL FUNDING PLATFORM</div>
           </section>
@@ -57,16 +57,16 @@ const GrantsPage: React.FC = () => {
             <h2>Two Paths to Funding</h2>
             <div className="mission-content">
               <p className="mission-statement">
-                Bitcoin Writer creates <strong>a unique funding ecosystem</strong> where quality work gets recognized through 
+                Bitcoin Books creates <strong>a unique funding ecosystem</strong> where quality literary and educational work gets recognized through 
                 $BWRITER token awards and becomes discoverable for potential independent funding:
               </p>
               
               <div className="mission-pillars">
                 <div className="pillar">
                   <div className="pillar-icon"><DollarSign size={32} /></div>
-                  <h3>Bitcoin Writer Curation</h3>
-                  <p><strong>$BWRITER token awards for quality work</strong><br/>
-                  We review submissions and award $BWRITER tokens to exceptional proposals, signaling their quality to the broader ecosystem.</p>
+                  <h3>Bitcoin Books Curation</h3>
+                  <p><strong>$BWRITER token awards for quality literary work</strong><br/>
+                  We review book proposals and award $BWRITER tokens to exceptional literary works, signaling their quality to the broader ecosystem.</p>
                 </div>
                 <div className="pillar">
                   <div className="pillar-icon"><Flower2 size={32} /></div>
@@ -83,22 +83,22 @@ const GrantsPage: React.FC = () => {
             <h2>Focus Areas for Both Programs</h2>
             <div className="focus-content">
               <p className="focus-intro">
-                Our platform showcases exceptional work across key innovation areas. Bitcoin Writer awards $BWRITER tokens 
-                to signal quality, while independent funders can discover and support projects that align with their values:
+                Our platform showcases exceptional literary and educational work across key innovation areas. Bitcoin Books awards $BWRITER tokens 
+                to signal quality, while independent funders can discover and support book projects that align with their values:
               </p>
               
               <div className="focus-areas">
                 <div className="focus-area">
                   <div className="focus-area-icon"><Wrench size={24} /></div>
-                  <h4>Bitcoin Writer Platform Development</h4>
+                  <h4>Bitcoin Books Platform Development</h4>
                   <ul>
-                    <li>Enhance functionality and user experience</li>
-                    <li>Create innovative content monetization features</li>
-                    <li>Develop educational tools and resources</li>
-                    <li>Build integrations with other BSV applications</li>
+                    <li>Enhance book marketplace functionality and reader experience</li>
+                    <li>Create innovative book monetization and publishing features</li>
+                    <li>Develop educational reading tools and resources</li>
+                    <li>Build integrations with literary and educational platforms</li>
                   </ul>
-                  <div style={{marginTop: '10px', fontSize: '12px', color: '#FF6B35'}}>
-                    Bitcoin Writer awards $BWRITER for platform improvements
+                  <div style={{marginTop: '10px', fontSize: '12px', color: '#007AFF'}}>
+                    Bitcoin Books awards $BWRITER for platform and marketplace improvements
                   </div>
                 </div>
                 
@@ -111,7 +111,7 @@ const GrantsPage: React.FC = () => {
                     <li>Research scalability and efficiency improvements</li>
                     <li>Build bridges to traditional industries</li>
                   </ul>
-                  <div style={{marginTop: '10px', fontSize: '12px', color: '#FF6B35'}}>
+                  <div style={{marginTop: '10px', fontSize: '12px', color: '#007AFF'}}>
                     Independent funders may support infrastructure projects
                   </div>
                 </div>
@@ -125,7 +125,7 @@ const GrantsPage: React.FC = () => {
                     <li>Build tools for educators and researchers</li>
                     <li>Enable new forms of academic publishing</li>
                   </ul>
-                  <div style={{marginTop: '10px', fontSize: '12px', color: '#FF6B35'}}>
+                  <div style={{marginTop: '10px', fontSize: '12px', color: '#007AFF'}}>
                     $BWRITER curation signals attract funder attention
                   </div>
                 </div>
@@ -137,7 +137,7 @@ const GrantsPage: React.FC = () => {
           <section className="categories-section">
             <h2>Apply by Role</h2>
             <p className="categories-intro">
-              Choose your application path below. Submit your proposal as a public .nft file, compete for $BWRITER token awards, 
+              Choose your application path below. Submit your book or platform proposal as a public .nft file, compete for $BWRITER token awards, 
               and become discoverable for potential independent funding:
             </p>
             
@@ -148,13 +148,13 @@ const GrantsPage: React.FC = () => {
                   <div className="category-badge">APPLY NOW</div>
                 </div>
                 <p>
-                  Building the infrastructure, tools, and applications that power the future of decentralized technology.
+                  Building the infrastructure, tools, and applications that power the future of decentralized book publishing and literary platforms.
                 </p>
                 <div className="category-details">
-                  <div className="detail">Infrastructure Development</div>
-                  <div className="detail">Protocol Innovation</div>
-                  <div className="detail">Developer Tooling</div>
-                  <div className="detail">Research Projects</div>
+                  <div className="detail">Publishing Infrastructure</div>
+                  <div className="detail">Reading Platform Innovation</div>
+                  <div className="detail">Book Publishing Tools</div>
+                  <div className="detail">Literary Research Projects</div>
                 </div>
                 <div className="category-cta">View Developer Opportunities →</div>
               </Link>
@@ -165,13 +165,13 @@ const GrantsPage: React.FC = () => {
                   <div className="category-badge">APPLY NOW</div>
                 </div>
                 <p>
-                  Creating educational content, documentation, and research that advances knowledge and understanding.
+                  Creating educational books, documentation, and literary research that advances knowledge and understanding.
                 </p>
                 <div className="category-details">
-                  <div className="detail">Educational Content</div>
-                  <div className="detail">Technical Documentation</div>
+                  <div className="detail">Educational Books</div>
+                  <div className="detail">Technical Literature</div>
                   <div className="detail">Research Publications</div>
-                  <div className="detail">Learning Resources</div>
+                  <div className="detail">Learning Materials</div>
                 </div>
                 <div className="category-cta">View Writing Opportunities →</div>
               </Link>
@@ -182,13 +182,13 @@ const GrantsPage: React.FC = () => {
                   <div className="category-badge">APPLY NOW</div>
                 </div>
                 <p>
-                  Scaling platforms, distribution networks, and publishing infrastructure for the decentralized future.
+                  Scaling book platforms, distribution networks, and publishing infrastructure for the decentralized literary future.
                 </p>
                 <div className="category-details">
-                  <div className="detail">Platform Development</div>
-                  <div className="detail">Content Distribution</div>
-                  <div className="detail">Publishing Innovation</div>
-                  <div className="detail">Infrastructure Scaling</div>
+                  <div className="detail">Book Platform Development</div>
+                  <div className="detail">Literary Distribution</div>
+                  <div className="detail">Book Publishing Innovation</div>
+                  <div className="detail">Publishing Infrastructure Scaling</div>
                 </div>
                 <div className="category-cta">View Publisher Opportunities →</div>
               </Link>
@@ -200,25 +200,25 @@ const GrantsPage: React.FC = () => {
             <h2>Creating Lasting Impact</h2>
             <div className="impact-content">
               <p>
-                Independent funding sources believe in nurturing ideas that bloom into transformative technologies and educational 
-                resources. Grants support projects that:
+                Independent funding sources believe in nurturing literary ideas that bloom into transformative books and educational 
+                resources. Grants support book projects that:
               </p>
               
               <div className="impact-points">
                 <div className="impact-point">
                   <div className="impact-point-icon"><Flower2 size={24} /></div>
-                  <h4>Plant Seeds of Innovation</h4>
-                  <p>Support early-stage research and development that could reshape entire industries</p>
+                  <h4>Plant Seeds of Literary Innovation</h4>
+                  <p>Support early-stage book projects and educational content that could reshape entire industries</p>
                 </div>
                 <div className="impact-point">
                   <div className="impact-point-icon"><Zap size={24} /></div>
-                  <h4>Foster Growth</h4>
-                  <p>Provide resources and mentorship to help promising projects reach their full potential</p>
+                  <h4>Foster Literary Growth</h4>
+                  <p>Provide resources and mentorship to help promising book projects reach their full potential</p>
                 </div>
                 <div className="impact-point">
                   <div className="impact-point-icon"><GraduationCap size={24} /></div>
-                  <h4>Enable Flourishing</h4>
-                  <p>Create sustainable ecosystems where innovation, education, and collaboration thrive</p>
+                  <h4>Enable Literary Flourishing</h4>
+                  <p>Create sustainable ecosystems where book publishing, education, and collaboration thrive</p>
                 </div>
               </div>
             </div>
@@ -230,8 +230,8 @@ const GrantsPage: React.FC = () => {
               <Flower2 size={48} />
               <h2>Ready to Make Your Mark?</h2>
               <p>
-                Apply for Bitcoin Writer grants to support your innovative projects in blockchain publishing and development. 
-                Whether you're a developer pushing technical boundaries, an author sharing knowledge, or a publisher scaling platforms—
+                Apply for Bitcoin Books grants to support your innovative projects in blockchain-based book publishing and literary development. 
+                Whether you're a developer pushing technical boundaries, an author creating educational content, or a publisher scaling book platforms—
                 submit your proposal for $BWRITER token grant consideration.
               </p>
               <div className="cta-buttons">
@@ -251,9 +251,9 @@ const GrantsPage: React.FC = () => {
           {/* Footer Note */}
           <section className="footer-note">
             <p>
-              <strong>Note:</strong> Bitcoin Writer awards grants in $BWRITER tokens to support innovative projects. 
+              <strong>Note:</strong> Bitcoin Books awards grants in $BWRITER tokens to support innovative book and literary projects. 
               Applications are reviewed on a rolling basis, with priority given to projects that demonstrate 
-              clear potential for advancing BSV blockchain technology and decentralized publishing.
+              clear potential for advancing BSV blockchain technology and decentralized book publishing.
             </p>
           </section>
         </div>
