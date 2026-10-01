@@ -55,7 +55,10 @@ import { useBitcoinOS } from './utils/useBitcoinOS';
 import ServiceWorkerRegistration from './components/ServiceWorkerRegistration';
 import LoadingDoor from './components/LoadingDoor';
 
+import { useCompactShell } from './mobile/shell';
+
 function App() {
+  const hideShell = useCompactShell();
   const [documentService, setDocumentService] = useState<BlockchainDocumentService | null>(null);
   const [handcashService] = useState<HandCashService>(new HandCashService());
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -280,14 +283,14 @@ function App() {
         }} />
       )}
       {/* Proof of Concept Banner - positioned at the very top */}
-      {!isInOS && <ProofOfConceptBanner />}
+      {!isInOS && !hideShell && <ProofOfConceptBanner />}
       
       <GoogleAuthProvider>
         {/* Global elements that appear on all pages */}
         {!isLoading && (
           <>
             {/* Developer Sidebar - Desktop Only */}
-            {!isMobile && !isInOS && <DevSidebar onCollapsedChange={setDevSidebarCollapsed} />}
+            {!isMobile && !isInOS && !hideShell && <DevSidebar onCollapsedChange={setDevSidebarCollapsed} />}
             
             {/* Clean taskbar with proper spacing */}
             {!isInOS && <CleanTaskbar
