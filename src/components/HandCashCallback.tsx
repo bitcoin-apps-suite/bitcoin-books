@@ -120,7 +120,7 @@ const HandCashCallback: React.FC = () => {
         </>
       ) : (
         <>
-          <h2>HandCash Authentication</h2>
+          <h2>Wallet Authentication</h2>
           <p>{status}</p>
           <div style={{
             marginTop: '20px',

@@ -598,7 +598,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
         txId: "nft1a2b3c4...",
         isNft: true,
         nftId: "nft_meta_manifesto_001",
-        nftOrigin: "HandCash Items",
+        nftOrigin: "Bitcoin OS Asset",
         marketUrl: "https://market.handcash.io/items/nft_meta_manifesto_001",
         royaltyPercentage: 10
       },
@@ -981,7 +981,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
         txId: "nft2a2b3c4...",
         isNft: true,
         nftId: "nft_bitcoin_history_001",
-        nftOrigin: "HandCash Items",
+        nftOrigin: "Bitcoin OS Asset",
         marketUrl: "https://market.handcash.io/items/nft_bitcoin_history_001",
         royaltyPercentage: 15
       },
@@ -1365,7 +1365,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
         txId: "nft3a2b3c4...",
         isNft: true,
         nftId: "nft_trading_journal_001",
-        nftOrigin: "HandCash Items",
+        nftOrigin: "Bitcoin OS Asset",
         marketUrl: "https://market.handcash.io/items/nft_trading_journal_001",
         royaltyPercentage: 20
       },

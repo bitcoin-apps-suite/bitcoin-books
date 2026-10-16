@@ -93,7 +93,7 @@ const TaskClaimModal: React.FC<TaskClaimModalProps> = ({
         throw new Error('Failed to get user profile after login');
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to connect HandCash wallet');
+      setError(err.message || 'Failed to connect your wallet');
     } finally {
       setIsLoading(false);
     }
@@ -232,19 +232,19 @@ const TaskClaimModal: React.FC<TaskClaimModalProps> = ({
           <div className={`step ${step === 'handcash' ? 'active' : ''} ${handCashUser ? 'completed' : ''}`}>
             <div className="step-header">
               <span className="step-number">2</span>
-              <span className="step-title">HandCash Wallet</span>
+              <span className="step-title">Wallet</span>
               {handCashUser && <span className="check">✓</span>}
             </div>
             
             {step === 'handcash' && !handCashUser && (
               <div className="step-content">
-                <p>Connect your HandCash wallet to receive token rewards</p>
+                <p>Connect your wallet to receive token rewards</p>
                 <button 
                   className="handcash-login-btn"
                   onClick={handleHandCashLogin}
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Connecting...' : 'Connect HandCash Wallet'}
+                  {isLoading ? 'Connecting...' : 'Connect Wallet'}
                 </button>
               </div>
             )}

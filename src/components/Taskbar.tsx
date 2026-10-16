@@ -77,7 +77,7 @@ const Taskbar: React.FC<TaskbarProps> = ({
         { divider: true },
         { 
           label: 'About Bitcoin Writer', 
-          action: () => alert('Bitcoin Writer v2.0\n\nDecentralized document writing on Bitcoin SV\n\n© 2025 The Bitcoin Corporation LTD\nRegistered in England and Wales • Company No. 16735102\n\nBuilt with HandCash integration') 
+          action: () => alert('Bitcoin Writer v2.0\n\nDecentralized document writing on Bitcoin SV\n\n© 2025 The Bitcoin Corporation LTD\nRegistered in England and Wales • Company No. 16735102\n\nBuilt for BRC-100 wallets') 
         },
         { divider: true },
         { 
