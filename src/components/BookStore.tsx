@@ -28,7 +28,7 @@ interface BookStoreProps {
 }
 
 const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUpdate }) => {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books] = useState<Book[]>([]);
   const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -43,7 +43,6 @@ const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUp
   const [showCart, setShowCart] = useState(false);
 
   // No sample books: the store lists only real published books (none yet).
-  const sampleBooks: Book[] = [];
 
   const categories = [
     { value: 'all', label: 'All Categories' },
@@ -73,12 +72,6 @@ const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUp
     { value: 'newest', label: 'Newest First' },
     { value: 'bestseller', label: 'Best Sellers' }
   ];
-
-  useEffect(() => {
-    setBooks(sampleBooks);
-    setFilteredBooks(sampleBooks);
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
-  }, []);
 
   useEffect(() => {
     let filtered = books.filter(book => {

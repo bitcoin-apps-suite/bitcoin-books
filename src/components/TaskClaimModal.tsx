@@ -32,9 +32,10 @@ const TaskClaimModal: React.FC<TaskClaimModalProps> = ({
   const [error, setError] = useState<string>('');
   const [countdown, setCountdown] = useState<{ days: number; hours: number; minutes: number } | null>(null);
   
-  const githubAuth = new GitHubAuthService();
-  const contractService = new TaskContractService();
-  const handcashService = new HandCashService();
+  // One instance per mount, so effects can depend on them.
+  const [githubAuth] = useState(() => new GitHubAuthService());
+  const [contractService] = useState(() => new TaskContractService());
+  const [handcashService] = useState(() => new HandCashService());
 
   useEffect(() => {
     // Check if already authenticated
@@ -42,8 +43,7 @@ const TaskClaimModal: React.FC<TaskClaimModalProps> = ({
       setGithubUser(githubAuth.getCurrentUser());
       setStep('handcash');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
-  }, []);
+  }, [githubAuth]);
 
   useEffect(() => {
     // Update countdown timer
@@ -67,8 +67,7 @@ const TaskClaimModal: React.FC<TaskClaimModalProps> = ({
         return () => clearInterval(timer);
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
-  }, [step, task.id]);
+  }, [step, task.id, contractService]);
 
   const handleGitHubLogin = async () => {
     setIsLoading(true);

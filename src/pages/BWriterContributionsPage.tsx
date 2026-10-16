@@ -3,7 +3,7 @@
 // Registered in England and Wales • Company No. 16735102
 // This software can only be used on BSV blockchains
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import TaskClaimModal from '../components/TaskClaimModal';
 import './BWriterContributionsPage.css';
 import Footer from '../components/Footer';
@@ -79,11 +79,6 @@ const BWriterContributionsPage: React.FC = () => {
   
   // Token distribution tracking
   const TOTAL_TOKENS = 1000000000; // 1 billion tokens
-  const [tokenDistribution, setTokenDistribution] = useState({
-    allocated: 7.5, // Initial 7.5% allocated to @b0ase for platform creation
-    reserved: 0,
-    available: 92.5
-  });
 
   // Todo items for development
   const [todoItems] = useState<TodoItem[]>([
@@ -480,7 +475,6 @@ const BWriterContributionsPage: React.FC = () => {
 
   useEffect(() => {
     fetchContributors();
-    calculateTokenDistribution();
     
     // Listen for hash changes
     const handleHashChange = () => {
@@ -521,7 +515,6 @@ const BWriterContributionsPage: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       clearInterval(checkSidebarState);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, []);
 
   const fetchContributors = async () => {
@@ -538,7 +531,8 @@ const BWriterContributionsPage: React.FC = () => {
     }
   };
 
-  const calculateTokenDistribution = () => {
+  // Derived from the task list; no effect or extra state needed.
+  const tokenDistribution = useMemo(() => {
     const foundersAllocation = 7.5; // @b0ase initial platform development
     
     const allocatedToTasks = todoItems
@@ -553,12 +547,12 @@ const BWriterContributionsPage: React.FC = () => {
     const totalAvailable = 100 - totalAllocated;
     const unallocatedReserve = totalAvailable - availableInTasks;
     
-    setTokenDistribution({
+    return {
       allocated: totalAllocated,
       reserved: unallocatedReserve > 0 ? unallocatedReserve : 0,
       available: availableInTasks
-    });
-  };
+    };
+  }, [todoItems]);
 
   const getDifficultyColor = (difficulty: TodoItem['difficulty']) => {
     switch (difficulty) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import './ModalStyles.css';
 
 interface StorageCalculatorModalProps {
@@ -11,19 +11,7 @@ const StorageCalculatorModal: React.FC<StorageCalculatorModalProps> = ({ isOpen,
   const [storageMethod, setStorageMethod] = useState('op_return');
   const [documentCount, setDocumentCount] = useState('1');
   
-  const [cost, setCost] = useState({
-    perDocument: 0.01,
-    total: 0.01,
-    bytes: 0,
-    satoshis: 0
-  });
-
-  useEffect(() => {
-    calculateCost();
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
-  }, [wordCount, storageMethod, documentCount]);
-
-  const calculateCost = () => {
+  const cost = useMemo(() => {
     const words = parseInt(wordCount) || 0;
     const docs = parseInt(documentCount) || 1;
     const avgCharsPerWord = 5;
@@ -42,13 +30,13 @@ const StorageCalculatorModal: React.FC<StorageCalculatorModalProps> = ({ isOpen,
     const totalCost = perDocCost * docs;
     const satoshis = Math.round(totalCost * 100000000 / 30000); // Assuming $30k/BTC
     
-    setCost({
+    return {
       perDocument: perDocCost,
       total: totalCost,
       bytes: bytes,
       satoshis: satoshis
-    });
-  };
+    };
+  }, [wordCount, storageMethod, documentCount]);
 
   if (!isOpen) return null;
 
