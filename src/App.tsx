@@ -3,7 +3,7 @@
 // Registered in England and Wales • Company No. 16735102
 // This software can only be used on BSV blockchains
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import FeaturesPage from './pages/FeaturesPage';
@@ -158,6 +158,33 @@ function App() {
     }
   }, [isInOS, setTitle]);
 
+  const initializeDocumentService = useCallback(async () => {
+    const service = new BlockchainDocumentService(handcashService);
+    await service.reconnect();
+    setDocumentService(service);
+  }, [handcashService]);
+
+  const checkAuthentication = useCallback(() => {
+    // Check if user is already logged in
+    if (handcashService.isAuthenticated()) {
+      const user = handcashService.getCurrentUser();
+      setCurrentUser(user);
+      setIsAuthenticated(true);
+      initializeDocumentService();
+    }
+    setIsLoading(false);
+  }, [handcashService, initializeDocumentService]);
+
+  const handleLogin = useCallback((user: HandCashUser) => {
+    console.log('=== User Successfully Authenticated ===');
+    console.log('User handle:', user.handle);
+    console.log('User paymail:', user.paymail);
+    console.log('=====================================');
+    setCurrentUser(user);
+    setIsAuthenticated(true);
+    initializeDocumentService();
+  }, [initializeDocumentService]);
+
   useEffect(() => {
     // Check for Google user first
     const storedGoogleUser = localStorage.getItem('googleUser');
@@ -180,34 +207,7 @@ function App() {
     };
     window.addEventListener('bwx-wallet-change', onWalletChange);
     return () => window.removeEventListener('bwx-wallet-change', onWalletChange);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const checkAuthentication = () => {
-    // Check if user is already logged in
-    if (handcashService.isAuthenticated()) {
-      const user = handcashService.getCurrentUser();
-      setCurrentUser(user);
-      setIsAuthenticated(true);
-      initializeDocumentService();
-    }
-    setIsLoading(false);
-  };
-
-  const initializeDocumentService = async () => {
-    const service = new BlockchainDocumentService(handcashService);
-    await service.reconnect();
-    setDocumentService(service);
-  };
-
-  const handleLogin = (user: HandCashUser) => {
-    console.log('=== User Successfully Authenticated ===');
-    console.log('User handle:', user.handle);
-    console.log('User paymail:', user.paymail);
-    console.log('=====================================');
-    setCurrentUser(user);
-    setIsAuthenticated(true);
-    initializeDocumentService();
-  };
+  }, [checkAuthentication, handcashService, handleLogin]);
 
   const handleLogout = () => {
     console.log('=== COMPLETE LOGOUT ===');

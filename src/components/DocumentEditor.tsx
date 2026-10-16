@@ -138,6 +138,13 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
   // Track if this is initial mount
   const isInitialMount = useRef(true);
   const prevPropDocument = useRef(propDocument);
+  // Latest editor content, read by effects that must not re-run on every keystroke.
+  const latestContentRef = useRef('');
+  useEffect(() => {
+    latestContentRef.current = quillContent || editorContent;
+  }, [quillContent, editorContent]);
+  // Latest hashDocument (declared further down), so the autosave interval always calls the current one.
+  const hashDocumentRef = useRef<() => Promise<void>>(async () => {});
   
   // Load document when propDocument changes
   useEffect(() => {
@@ -197,7 +204,7 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
         // User clicked "New Document" in sidebar
         // Save current document first if it has content
         if (localDocumentId) {
-          const content = quillContent || editorContent;
+          const content = latestContentRef.current;
           if (content && content !== '') {
             // Extract title from first line of text
             const text = content.replace(/<[^>]*>/g, '');
@@ -228,7 +235,6 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
     
     prevPropDocument.current = propDocument;
     isInitialMount.current = false;
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, [propDocument, loadLocalDocument, isAuthenticated, documentService, localDocumentId]);
 
   // Listen for tokenize modal event
@@ -540,7 +546,7 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
     const interval = setInterval(() => {
       // Auto-save to local storage for ALL users
       if (localDocumentId) {
-        const content = quillContent || editorContent;
+        const content = latestContentRef.current;
         if (content && content !== '<p>Start writing...</p>') {
           saveToLocalStorage();
           
@@ -561,7 +567,7 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
       if (isAuthenticated && localDocumentId) {
         const now = Date.now();
         if (now - lastHashTime > 60000) { // Every minute
-          hashDocument();
+          hashDocumentRef.current();
           const timeString = new Date().toLocaleTimeString('en-US', { 
             hour: '2-digit', 
             minute: '2-digit' 
@@ -573,8 +579,7 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
     }, 60000); // Every 60 seconds (1 minute)
 
     return () => clearInterval(interval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
-  }, [saveToLocalStorage, isAuthenticated, localDocumentId, lastHashTime, quillContent]);
+  }, [saveToLocalStorage, isAuthenticated, localDocumentId, lastHashTime]);
   
   // Hash document (ultra-low cost, just store hash)
   const hashDocument = async () => {
@@ -616,6 +621,9 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
       }
     }
   };
+  useEffect(() => {
+    hashDocumentRef.current = hashDocument;
+  });
 
   const extractTitleFromContent = (html: string): string => {
     const tempDiv = document.createElement('div');

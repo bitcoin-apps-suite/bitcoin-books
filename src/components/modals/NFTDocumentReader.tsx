@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './NFTDocumentReader.css';
 
 interface NFTDocumentReaderProps {
@@ -27,14 +27,7 @@ const NFTDocumentReader: React.FC<NFTDocumentReaderProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [canRead, setCanRead] = useState(false);
 
-  useEffect(() => {
-    if (isOpen && nftId) {
-      fetchDocumentContent();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
-  }, [isOpen, nftId]);
-
-  const fetchDocumentContent = async () => {
+  const fetchDocumentContent = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     
@@ -67,7 +60,14 @@ const NFTDocumentReader: React.FC<NFTDocumentReaderProps> = ({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [nftId]);
+
+  useEffect(() => {
+    if (isOpen && nftId) {
+      fetchDocumentContent();
+    }
+  }, [isOpen, nftId, fetchDocumentContent]);
+
 
   if (!isOpen) return null;
 

@@ -52,7 +52,7 @@ const ContractsPage: React.FC = () => {
 
   useEffect(() => {
     fetchContracts();
-    checkAuthentication();
+    setIsAuthenticated(handcashService.isAuthenticated());
     
     // Listen for storage changes to detect sidebar collapse state
     const handleStorageChange = () => {
@@ -79,12 +79,7 @@ const ContractsPage: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       clearInterval(checkSidebarState);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
-  }, []);
-
-  const checkAuthentication = () => {
-    setIsAuthenticated(handcashService.isAuthenticated());
-  };
+  }, [handcashService]);
 
   const fetchContracts = async () => {
     try {

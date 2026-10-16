@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { EncryptionService } from '../utils/encryptionUtils';
 import { NoteSVEncryption } from '../services/NoteSVEncryption';
 import BSVStorageService from '../services/BSVStorageService';
@@ -26,11 +26,16 @@ const DocumentUnlock: React.FC<DocumentUnlockProps> = ({
   
   const bsvService = new BSVStorageService();
 
+  // The 1s poll calls the latest checkUnlockStatus (it reads current props/state), without restarting the timer.
+  const checkUnlockStatusRef = useRef<() => Promise<void>>(async () => {});
   useEffect(() => {
-    checkUnlockStatus();
-    const interval = setInterval(checkUnlockStatus, 1000);
+    checkUnlockStatusRef.current = checkUnlockStatus;
+  });
+  useEffect(() => {
+    const tick = () => { checkUnlockStatusRef.current(); };
+    tick();
+    const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, []);
 
   const checkUnlockStatus = async () => {
