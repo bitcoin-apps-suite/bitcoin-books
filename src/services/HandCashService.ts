@@ -1,75 +1,74 @@
-// HandCash Service - Simplified wrapper using HandCashAuthService
-// This maintains backward compatibility while using the new REST API implementation
+// Wallet service: BRC-100 sign-in (bWalletX first; any BRC-100 wallet works).
+// The class keeps its old name so the rest of the app is untouched; HandCash OAuth is gone.
+// We only hold the user's PUBLIC identity key. No tokens, no keys, no custody.
+import { WalletClient } from '@bsv/sdk';
 
-import { HandCashAuthService } from './HandCashAuthService';
-import type { HandCashUser } from './HandCashAuthService';
+export interface HandCashUser {
+  handle: string;
+  paymail: string;
+  publicKey?: string;
+  avatarUrl?: string;
+  displayName?: string;
+}
 
-export type { HandCashUser };
+const STORAGE_KEY = 'bwx_wallet_user';
+let client: WalletClient | null = null;
+
+export function getWallet(): WalletClient {
+  if (!client) client = new WalletClient('auto', window.location.host);
+  return client;
+}
 
 export class HandCashService {
-  private authService: HandCashAuthService;
-
-  constructor() {
-    this.authService = new HandCashAuthService();
-  }
-
-  // Start the login flow
+  /** Ask the wallet for the user's identity key (XDM when framed in bWalletX, else window.CWI, else localhost). */
   async login(): Promise<void> {
-    return this.authService.login();
+    try {
+      const { publicKey } = await getWallet().getPublicKey({ identityKey: true });
+      const user: HandCashUser = { handle: `${publicKey.slice(0, 6)}…${publicKey.slice(-4)}`, paymail: '', publicKey, displayName: 'bWalletX' };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+      window.dispatchEvent(new Event('bwx-wallet-change'));
+    } catch (e) {
+      console.error('Wallet sign-in failed', e);
+      alert('No BRC-100 wallet found. Open Bitcoin Books in bWalletX.');
+    }
   }
 
-  // Handle OAuth callback - token is passed directly
-  async handleCallback(authToken: string): Promise<HandCashUser> {
-    console.log('HandCashService.handleCallback called with token:', authToken.substring(0, 20) + '...');
-    
-    // Store the token directly
-    this.authService.tokens = {
-      accessToken: authToken,
-      tokenType: 'Bearer'
-    };
-    
-    // Fetch user profile
-    const user = await this.authService.fetchUserProfile();
-    this.authService.currentUser = user;
-    
-    // Save session
-    this.authService.saveSession();
-    
-    return user;
+  async handleCallback(_authToken: string): Promise<HandCashUser> {
+    throw new Error('OAuth callbacks are not used: sign in with bWalletX');
   }
 
-  // Logout
   logout(): void {
-    this.authService.logout();
+    localStorage.removeItem(STORAGE_KEY);
+    window.dispatchEvent(new Event('bwx-wallet-change'));
   }
 
-  // Check if user is logged in
   isAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
+    return this.getCurrentUser() !== null;
   }
 
-  // Get current user
   getCurrentUser(): HandCashUser | null {
-    return this.authService.getCurrentUser();
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? (JSON.parse(raw) as HandCashUser) : null;
+    } catch {
+      return null;
+    }
   }
 
-  // Get access token for blockchain operations
+  /** No bearer tokens with BRC-100: the wallet signs and pays itself (createAction). */
   getAccessToken(): string | null {
-    return this.authService.getAccessToken();
+    return null;
   }
 
-  // Make authenticated request
-  async makeAuthenticatedRequest(endpoint: string, options: RequestInit = {}): Promise<any> {
-    return this.authService.makeAuthenticatedRequest(endpoint, options);
+  async makeAuthenticatedRequest(_endpoint: string, _options: RequestInit = {}): Promise<any> {
+    throw new Error('Not available: payments go through your wallet');
   }
 
-  // Request magic link authentication via email
-  async requestMagicLink(email: string): Promise<{ success: boolean; message: string }> {
-    return this.authService.requestMagicLink(email);
+  async requestMagicLink(_email: string): Promise<{ success: boolean; message: string }> {
+    return { success: false, message: 'Email sign-in is not available. Sign in with bWalletX.' };
   }
 
-  // Handle magic link callback
-  async handleMagicLinkCallback(token: string): Promise<HandCashUser> {
-    return this.authService.handleMagicLinkCallback(token);
+  async handleMagicLinkCallback(_token: string): Promise<HandCashUser> {
+    throw new Error('Email sign-in is not available. Sign in with bWalletX.');
   }
 }

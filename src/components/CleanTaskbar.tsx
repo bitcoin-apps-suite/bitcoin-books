@@ -64,7 +64,7 @@ const CleanTaskbar: React.FC<TaskbarProps> = ({
           window.location.href = '/';
         }},
         { divider: true },
-        { label: 'About Bitcoin Writer', action: () => alert('Bitcoin Writer v2.0\n\nDecentralized document writing on Bitcoin SV\n\n© 2025 The Bitcoin Corporation LTD\nRegistered in England and Wales • Company No. 16735102\nAll rights reserved\n\nBuilt with HandCash integration') },
+        { label: 'About Bitcoin Writer', action: () => alert('Bitcoin Writer v2.0\n\nDecentralized document writing on Bitcoin SV\n\n© 2025 The Bitcoin Corporation LTD\nRegistered in England and Wales • Company No. 16735102\nAll rights reserved') },
         { label: 'Features', action: () => {
           const event = new CustomEvent('showFeaturesPage');
           window.dispatchEvent(event);
@@ -277,7 +277,7 @@ const CleanTaskbar: React.FC<TaskbarProps> = ({
         { label: 'BAP Executive Summary', href: '/bitcoin-writer/bap' },
         { divider: true },
         { label: 'BSV SDK Docs', href: 'https://docs.bsvblockchain.org' },
-        { label: 'HandCash SDK Docs', href: 'https://docs.handcash.io' },
+        { label: 'bWalletX (BRC-100)', href: 'https://bwalletx.com' },
         { divider: true },
         { label: 'GitHub Repository', href: 'https://github.com/bitcoin-apps-suite/bitcoin-writer' },
         { label: '$BWRITER Token', action: () => window.location.href = '/token' },
@@ -1254,7 +1254,7 @@ const CleanTaskbar: React.FC<TaskbarProps> = ({
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'transparent';
           }}
-          title={isAuthenticated ? 'Manage HandCash connection' : 'Connect with HandCash'}
+          title={isAuthenticated ? 'Signed in with bWalletX' : 'Sign in with bWalletX'}
         >
           <span>{isAuthenticated && currentUser ? (currentUser.handle || 'Connected') : (
             isMobile ? '' : 'Not Connected'

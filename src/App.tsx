@@ -35,7 +35,6 @@ import PrivacyPage from './pages/PrivacyPage';
 import ContactPage from './pages/ContactPage';
 import BookStore from './components/BookStore';
 // import DocumentSidebar from './components/DocumentSidebar'; // Removed for bookstore"
-import HandCashCallback from './components/HandCashCallback';
 import BapPage from './pages/BapPage';
 import MAIPPage from './pages/MAIPPage';
 import { BlockchainDocumentService, BlockchainDocument } from './services/BlockchainDocumentService';
@@ -173,44 +172,15 @@ function App() {
       }
     }
 
-    // Check if we're coming back from HandCash with an authToken
-    const urlParams = new URLSearchParams(window.location.search);
-    const hashParams = new URLSearchParams(window.location.hash.replace('#', ''));
-    
-    // Check multiple possible parameter names HandCash might use
-    const authToken = urlParams.get('authToken') || 
-                     urlParams.get('auth_token') || 
-                     urlParams.get('access_token') || 
-                     urlParams.get('token') ||
-                     hashParams.get('authToken') ||
-                     hashParams.get('auth_token') ||
-                     hashParams.get('access_token') ||
-                     hashParams.get('token');
-    
-    console.log('=== App Initialization ===');
-    console.log('HandCash App ID:', process.env.REACT_APP_HANDCASH_APP_ID ? 'Configured' : 'NOT CONFIGURED');
-    console.log('Current URL:', window.location.href);
-    console.log('URL params:', Array.from(urlParams.entries()));
-    console.log('Hash params:', Array.from(hashParams.entries()));
-    console.log('Auth token found:', authToken ? 'Yes' : 'No');
-    
-    if (authToken) {
-      // We have an authToken, handle the callback
-      console.log('Found authToken, handling callback...');
-      const handcashService = new HandCashService();
-      handcashService.handleCallback(authToken).then(user => {
-        console.log('Callback processed, user:', user);
-        handleLogin(user);
-        // Clean up URL after successful auth
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }).catch(err => {
-        console.error('Failed to handle callback:', err);
-        alert('HandCash authentication failed. Please try again.');
-      });
-    } else {
-      // Check existing authentication
-      checkAuthentication();
-    }
+    // BRC-100 wallet session (bWalletX): restore it, and follow sign-in/sign-out from anywhere in the app.
+    checkAuthentication();
+    const onWalletChange = () => {
+      const user = handcashService.getCurrentUser();
+      if (user) handleLogin(user);
+      else { setIsAuthenticated(false); setCurrentUser(null); }
+    };
+    window.addEventListener('bwx-wallet-change', onWalletChange);
+    return () => window.removeEventListener('bwx-wallet-change', onWalletChange);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const checkAuthentication = () => {
@@ -315,7 +285,6 @@ function App() {
         )}
 
         <Routes>
-      <Route path="/auth/handcash/callback" element={<HandCashCallback />} />
       <Route path="/bitcoin-writer/bap" element={<BapPage />} />
       <Route path="/features" element={<FeaturesPage />} />
       <Route path="/token" element={<TokenPage />} />
@@ -522,10 +491,10 @@ function App() {
                           <span>📂</span> GitHub Repository
                         </div>
                         <div className="menu-item" onClick={() => {
-                          window.open('https://docs.handcash.io', '_blank');
+                          window.open('https://bwalletx.com', '_blank');
                           setShowDevelopersMenu(false);
                         }}>
-                          <span>📚</span> HandCash API Docs
+                          <span>📚</span> bWalletX (BRC-100)
                         </div>
                         <div className="menu-separator" />
                         <div className="menu-item" onClick={() => {
@@ -745,7 +714,7 @@ function App() {
                             setShowMobileMenu(false);
                           }}
                         >
-                          🔑 Sign in with HandCash
+                          🔑 Sign in with bWalletX
                         </button>
                       </div>
                     )}
