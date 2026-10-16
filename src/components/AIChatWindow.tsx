@@ -37,7 +37,7 @@ const AIChatWindow: React.FC<AIChatWindowProps> = ({
   const [showApiKeyInput, setShowApiKeyInput] = useState(false);
   const [apiKey, setApiKey] = useState('');
   const [showSettings, setShowSettings] = useState(false);
-  const [conversationContext, setConversationContext] = useState<any[]>([]);
+  const [, setConversationContext] = useState<any[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 

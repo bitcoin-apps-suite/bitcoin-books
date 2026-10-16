@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './DocumentExchangeView.css';
-import { HandCashItemsService } from '../services/HandCashItemsService';
-import { HandCashService } from '../services/HandCashService';
 import NFTDocumentReader from './modals/NFTDocumentReader';
 
 // Use the same interfaces from DocumentExchange
@@ -82,7 +80,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
   const [nftDocuments, setNftDocuments] = useState<any[]>([]);
   const [nftReaderOpen, setNftReaderOpen] = useState(false);
   const [selectedNftDocument, setSelectedNftDocument] = useState<any>(null);
-  const [isLoadingNfts, setIsLoadingNfts] = useState(false);
+  const [, setIsLoadingNfts] = useState(false);
 
   const bookCategories = ['All', 'Fiction', 'Non-Fiction', 'Business', 'Tech', 'Health', 'Self-Help', 'History', 'Science'];
   const articleCategories = ['All', 'Tech', 'Business', 'Finance', 'Health', 'Politics', 'Culture', 'Opinion'];
@@ -142,6 +140,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
   // Fetch NFT documents when component mounts or authorType changes
   useEffect(() => {
     fetchNftDocuments();
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, [authorType]);
 
   // Combine user documents with mock marketplace data

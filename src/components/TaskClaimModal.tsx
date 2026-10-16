@@ -42,6 +42,7 @@ const TaskClaimModal: React.FC<TaskClaimModalProps> = ({
       setGithubUser(githubAuth.getCurrentUser());
       setStep('handcash');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, []);
 
   useEffect(() => {
@@ -66,6 +67,7 @@ const TaskClaimModal: React.FC<TaskClaimModalProps> = ({
         return () => clearInterval(timer);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, [step, task.id]);
 
   const handleGitHubLogin = async () => {
@@ -106,7 +108,7 @@ const TaskClaimModal: React.FC<TaskClaimModalProps> = ({
     
     try {
       // Create contract
-      const contract = await contractService.createContract(
+      await contractService.createContract(
         task.id,
         task.githubIssueNumber || parseInt(task.id),
         githubUser.login,

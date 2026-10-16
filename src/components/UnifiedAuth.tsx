@@ -24,7 +24,7 @@ const UnifiedAuth: React.FC<UnifiedAuthProps> = ({
   onHandCashLogin,
   onHandCashLogout
 }) => {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [, setShowDropdown] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [twitterUser, setTwitterUser] = useState<any>(null);
   const [showSubstackModal, setShowSubstackModal] = useState(false);

@@ -1,4 +1,4 @@
-import { Transaction, Script, PrivateKey, PublicKey, P2PKH } from '@bsv/sdk';
+import { PrivateKey, PublicKey } from '@bsv/sdk';
 import CryptoJS from 'crypto-js';
 import { EncryptionService } from '../utils/encryptionUtils';
 import { NoteSVEncryption } from './NoteSVEncryption';

@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './ProofOfConceptBanner.css';
-import { HandCashService } from '../services/HandCashService';
 
 const ProofOfConceptBanner: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const navigate = useNavigate();
 
   if (!isVisible) return null;
-
-  const handleNavigation = (path: string) => {
-    navigate(path);
-  };
 
   return (
     <div className="poc-banner">

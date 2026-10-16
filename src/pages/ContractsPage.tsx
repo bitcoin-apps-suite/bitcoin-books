@@ -35,7 +35,7 @@ const ContractsPage: React.FC = () => {
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
   const [showClaimModal, setShowClaimModal] = useState(false);
   const [handcashService] = useState(new HandCashService());
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [, setIsAuthenticated] = useState(false);
   const [activeTab, setActiveTab] = useState<'developer' | 'writing'>('developer');
   const [devSidebarCollapsed, setDevSidebarCollapsed] = useState(() => {
     const saved = localStorage.getItem('devSidebarCollapsed');
@@ -79,6 +79,7 @@ const ContractsPage: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       clearInterval(checkSidebarState);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, []);
 
   const checkAuthentication = () => {
@@ -120,7 +121,6 @@ const ContractsPage: React.FC = () => {
         let priorityMatch = body.match(/\*\*Priority:\*\*\s*(Critical|High|Medium|Low)/i);
         let hoursMatch = body.match(/\*\*Estimated Hours:\*\*\s*([\d,]+)/i);
         let rewardMatch = body.match(/\*\*Token Reward:\*\*\s*([\d,]+)\s*BWRITER/i);
-        let categoryMatch = body.match(/\*\*Category:\*\*\s*([^\n]+)/i);
         
         // Find matching PR if exists
         const matchingPR = pullRequests.find((pr: any) => 

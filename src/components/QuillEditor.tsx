@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import ReactQuill, { Quill } from 'react-quill';
+import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import mammoth from 'mammoth';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
@@ -24,10 +24,10 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
   placeholder = 'Start writing your document...'
 }) => {
   const quillRef = useRef<ReactQuill>(null);
-  const [isReady, setIsReady] = useState(false);
+  const [, setIsReady] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
   const [showSaveModal, setShowSaveModal] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
+  const [, setIsSaving] = useState(false);
   const handcashService = useMemo(() => new HandCashService(), []);
   const bsvService = useMemo(() => new BSVStorageService(handcashService), [handcashService]);
   const [isEmpty, setIsEmpty] = useState(() => {

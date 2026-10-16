@@ -8,7 +8,7 @@ interface ImportSourcesModalProps {
 }
 
 const ImportSourcesModal: React.FC<ImportSourcesModalProps> = ({ isOpen, onClose, onImport }) => {
-  const [isLoading, setIsLoading] = useState<string | null>(null);
+  const [, setIsLoading] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<'all' | 'writing' | 'notes' | 'cloud' | 'cms' | 'social'>('all');
 
   if (!isOpen) return null;
