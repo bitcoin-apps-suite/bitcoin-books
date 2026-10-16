@@ -98,7 +98,7 @@ const ContactAuthorModal: React.FC<ContactAuthorModalProps> = ({
                     <circle cx="12" cy="12" r="10" stroke="#38CB7C" strokeWidth="2"/>
                     <path d="M12 6v12M8 10h8" stroke="#38CB7C" strokeWidth="2" strokeLinecap="round"/>
                   </svg>
-                  Sign with HandCash
+                  Sign with your wallet
                 </button>
               </div>
             </div>

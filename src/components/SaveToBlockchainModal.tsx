@@ -480,7 +480,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                       </label>
                       <div style={{ marginTop: '12px', padding: '10px', backgroundColor: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.3)', borderRadius: '6px' }}>
                         <strong>💰 CDN Ready:</strong> Your content will be served globally via Cloudflare's CDN. 
-                        Readers pay micropayments directly to your HandCash wallet to access.
+                        Readers pay micropayments directly to your wallet to access.
                       </div>
                     </div>
                   )}
@@ -567,8 +567,8 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     disabled={isLoading}
                   />
                   <div className="option-content">
-                    <strong>🆔 HandCash Identity Encryption</strong>
-                    <p>Encrypted with your HandCash identity - only you can decrypt</p>
+                    <strong>🆔 Wallet Identity Encryption</strong>
+                    <p>Encrypted with your wallet identity - only you can decrypt</p>
                   </div>
                 </label>
 
@@ -640,10 +640,10 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
 
               {encryption && encryptionMethod === 'multiparty' && (
                 <div className="encryption-notice" style={{ marginTop: '20px' }}>
-                  <strong>🔐 HandCash Identity Protection</strong>
-                  <p>Your document will be encrypted using your unique HandCash identity.</p>
+                  <strong>🔐 Wallet Identity Protection</strong>
+                  <p>Your document will be encrypted using your unique wallet identity.</p>
                   <ul style={{ marginTop: '10px', paddingLeft: '20px', fontSize: '13px' }}>
-                    <li>Only you can decrypt with your HandCash account</li>
+                    <li>Only you can decrypt with your wallet</li>
                     <li>Lost account = lost access (keep recovery phrase safe!)</li>
                     <li>Perfect for private notes and sensitive documents</li>
                   </ul>
@@ -735,7 +735,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                   />
                   <div className="option-content">
                     <strong>💰 Paywall (Recommended)</strong>
-                    <p>Readers pay micropayments to your HandCash wallet</p>
+                    <p>Readers pay micropayments to your wallet</p>
                   </div>
                 </label>
                 
@@ -803,13 +803,13 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     borderRadius: '8px' 
                   }}>
                     <h4 style={{ margin: '0 0 10px 0', color: '#22c55e' }}>
-                      🤝 HandCash Payment Flow
+                      🤝 Wallet Payment Flow
                     </h4>
                     <p style={{ margin: '0', fontSize: '13px', lineHeight: '1.6', color: '#ccc' }}>
                       When readers access your content:
                       <br />1. They see your preview/teaser
                       <br />2. Click "Pay to Read" button
-                      <br />3. HandCash processes micropayment
+                      <br />3. Your wallet processes the micropayment
                       <br />4. Payment goes directly to your wallet
                       <br />5. Content unlocks instantly
                     </p>
@@ -923,13 +923,13 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                 borderRadius: '8px' 
               }}>
                 <h4 style={{ margin: '0 0 10px 0', color: '#f7931a' }}>
-                  🤝 HandCash Items Protocol
+                  🤝 Bitcoin OS Assets (coming soon)
                 </h4>
                 <p style={{ margin: '0 0 10px 0', fontSize: '13px', lineHeight: '1.6', color: '#ccc' }}>
                   Save your document as a tradeable Bitcoin OS asset:
                 </p>
                 <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '12px', color: '#aaa' }}>
-                  <li>Appears in HandCash Market instantly</li>
+                  <li>Tradeable from your BRC-100 wallet</li>
                   <li>Built-in secondary market trading</li>
                   <li>Automatic royalty collection</li>
                   <li>No external marketplace needed</li>
@@ -939,11 +939,11 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
               <label className="checkbox-option">
                 <input
                   type="checkbox"
-                  checked={enableAsset}
-                  onChange={(e) => setEnableAsset(e.target.checked)}
-                  disabled={isLoading}
+                  checked={false}
+                  onChange={() => setEnableAsset(false)}
+                  disabled
                 />
-                <span><strong>Create Bitcoin OS Asset</strong> - List on asset marketplace</span>
+                <span><strong>Create Bitcoin OS Asset</strong> - Publishing is coming soon</span>
               </label>
 
               {enableAsset && (
@@ -970,7 +970,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                           placeholder="1.00"
                         />
                         <small style={{ display: 'block', marginTop: '3px', color: '#888' }}>
-                          USD via HandCash
+                          USD via your wallet
                         </small>
                       </label>
                     </div>
@@ -1060,8 +1060,8 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                   }}>
                     <strong>🛍️ After creation:</strong> Your document asset will appear in:
                     <ul style={{ margin: '5px 0 0 20px', padding: 0 }}>
-                      <li>HandCash Market (in-app marketplace)</li>
-                      <li>Your HandCash profile</li>
+                      <li>The asset marketplace</li>
+                      <li>Your wallet</li>
                       <li>Buyer's asset collection</li>
                     </ul>
                   </div>
@@ -1182,7 +1182,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
             {isLoading 
               ? 'Publishing...' 
               : !isAuthenticated 
-                ? '🤝 Sign in with HandCash to Publish' 
+                ? '🤝 Connect your wallet to Publish' 
                 : unlockMethod === 'priced' 
                   ? '💰 Publish & Monetize' 
                   : 'Save to Blockchain'}

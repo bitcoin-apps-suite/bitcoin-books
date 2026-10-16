@@ -107,7 +107,7 @@ const HandCashMagicAuth: React.FC<HandCashMagicAuthProps> = ({
           marginBottom: '24px' 
         }}>
           <h2 style={{ margin: 0, fontSize: '24px', fontWeight: '300' }}>
-            🪄 HandCash Magic Link
+            🪄 Magic Link
           </h2>
           {onClose && (
             <button 
@@ -129,7 +129,7 @@ const HandCashMagicAuth: React.FC<HandCashMagicAuthProps> = ({
         {step === 'email' && (
           <>
             <p style={{ color: '#ccc', marginBottom: '24px', lineHeight: '1.5' }}>
-              Enter your email to receive a secure authentication link from HandCash.
+              Enter your email to receive a secure authentication link.
             </p>
             
             <form onSubmit={handleSubmit}>
@@ -255,7 +255,7 @@ const HandCashMagicAuth: React.FC<HandCashMagicAuthProps> = ({
               marginBottom: '24px'
             }}>
               <p style={{ margin: 0, fontSize: '14px', color: '#ccc' }}>
-                💡 <strong>Click the link in your email</strong> to authenticate with HandCash. 
+                💡 <strong>Click the link in your email</strong> to sign in. 
                 The link will automatically redirect you back here.
               </p>
             </div>

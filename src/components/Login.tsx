@@ -28,20 +28,20 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <div className="login-box">
         <div className="logo-section">
           <h1>Bitcoin Writer</h1>
-          <p className="tagline">Blockchain-powered writing with HandCash</p>
+          <p className="tagline">Blockchain-powered writing with your Bitcoin wallet</p>
         </div>
         
         <div className="features-section">
           <h3>Why Bitcoin Writer?</h3>
           <ul>
-            <li>🔑 Only you can access them with your HandCash login</li>
+            <li>🔑 Only you can access them with your wallet</li>
             <li>🌐 Access your work from anywhere, anytime</li>
             <li>💎 Built on Bitcoin SV for permanent storage</li>
           </ul>
         </div>
 
         <div className="login-section">
-          <p>Sign in with your HandCash wallet to get started</p>
+          <p>Connect your BRC-100 wallet (bWalletX) to get started</p>
           
           {error && (
             <div className="error-message">
@@ -57,30 +57,30 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             {isLoading ? (
               <span>
                 <span className="spinner"></span>
-                Connecting to HandCash...
+                Connecting to your wallet...
               </span>
             ) : (
               <span>
                 <span style={{ marginRight: '8px', fontSize: '18px' }}>💰</span>
-                Sign in with HandCash
+                Connect wallet
               </span>
             )}
           </button>
 
           <div className="privacy-note">
             <small>
-              We use HandCash for secure authentication. Your private keys never leave your wallet.
+              We use your BRC-100 wallet for secure authentication. Your private keys never leave your wallet.
             </small>
           </div>
         </div>
       </div>
       
       <div className="demo-section">
-        <h4>New to HandCash?</h4>
+        <h4>Need a wallet?</h4>
         <p>
-          HandCash is a Bitcoin wallet that makes it easy to use Bitcoin SV applications.
-          <a href="https://handcash.io" target="_blank" rel="noopener noreferrer">
-            Get HandCash →
+          bWalletX is a Bitcoin wallet that makes it easy to use Bitcoin SV applications.
+          <a href="https://bwalletx.com" target="_blank" rel="noopener noreferrer">
+            Get bWalletX →
           </a>
         </p>
       </div>

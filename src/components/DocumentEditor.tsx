@@ -8,8 +8,6 @@ import PostToTwitterModal from './PostToTwitterModal';
 import DocumentVersioningModal from './modals/DocumentVersioningModal';
 import { StorageOption } from '../utils/pricingCalculator';
 import BSVStorageService from '../services/BSVStorageService';
-import { HandCashItemsService } from '../services/HandCashItemsService';
-import { HandCashService } from '../services/HandCashService';
 import { LocalDocumentStorage, LocalDocument } from '../utils/documentStorage';
 import CryptoJS from 'crypto-js';
 import QuillEditor from './QuillEditor';
@@ -393,67 +391,11 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
       
       // Check if asset creation is enabled
       if (options.monetization?.enableAsset) {
-        setAutoSaveStatus('🎨 Creating Bitcoin OS Asset...');
-        
-        // Get HandCash auth token
-        const handcashService = new HandCashService();
-        const authToken = handcashService.getAccessToken();
-        
-        if (!authToken) {
-          alert('Please sign in with HandCash to create Bitcoin OS assets');
-          setIsLoading(false);
-          setAutoSaveStatus('');
-          if (onAuthRequired) {
-            onAuthRequired();
-          }
-          return;
-        }
-        
-        // Prepare asset data
-        const itemsService = new HandCashItemsService();
-        const assetData = {
-          name: title,
-          description: options.metadata.description || `${title} - A document saved as Bitcoin OS asset`,
-          quantity: options.monetization.maxSupply || 1,
-          initialPrice: options.monetization.initialPrice || 1,
-          royaltyPercentage: options.monetization.royaltyPercentage || 10,
-          rarity: 'common' as const,
-          documentContent: text,
-          documentMetadata: {
-            id: localDocumentId || `doc_${Date.now()}`,
-            title: title,
-            wordCount: wordCount,
-            createdAt: new Date().toISOString(),
-            contentHash: itemsService.calculateContentHash(text),
-            storageMethod: options.storageMethod
-          }
-        };
-        
-        // Create the asset
-        const assetResult = await itemsService.mintDocumentNFT(authToken, assetData);
-        
-        if (assetResult.success) {
-          setAutoSaveStatus('✅ Bitcoin OS asset created successfully!');
-          
-          // Show success message with market URL
-          if (assetResult.marketUrl) {
-            alert(`Bitcoin OS asset created successfully!\n\nView on HandCash Market:\n${assetResult.marketUrl}`);
-          } else {
-            alert('Bitcoin OS asset created successfully! Check your HandCash wallet.');
-          }
-          
-          // Still store document data on-chain for permanence
-          if (options.storageMethod !== 'cloud') {
-            setAutoSaveStatus('📝 Storing document on-chain...');
-            result = await bsvService.storeDocumentWithOptions(
-              text,
-              options,
-              documentService?.getCurrentUser()?.handle || 'anonymous'
-            );
-          }
-        } else {
-          throw new Error(assetResult.error || 'Failed to create Bitcoin OS asset');
-        }
+        // Asset publishing is being rebuilt on the BRC-100 wallet (createAction).
+        alert('Publishing is coming soon. Your document has not been published as an asset.');
+        setIsLoading(false);
+        setAutoSaveStatus('');
+        return;
       } else {
         // Regular blockchain storage without asset creation
         result = await bsvService.storeDocumentWithOptions(

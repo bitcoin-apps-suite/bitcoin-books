@@ -173,7 +173,7 @@ const DocumentUnlock: React.FC<DocumentUnlockProps> = ({
 
   const handlePaymentUnlock = async () => {
     if (!handcashService) {
-      alert('Please connect HandCash wallet to make payment');
+      alert('Please connect your wallet to make payment');
       return;
     }
     
@@ -292,7 +292,7 @@ const DocumentUnlock: React.FC<DocumentUnlockProps> = ({
               {isProcessing ? 'Processing...' : 'Pay & Unlock'}
             </button>
             {!handcashService && (
-              <small className="warning">Connect HandCash wallet to make payment</small>
+              <small className="warning">Connect your wallet to make payment</small>
             )}
           </div>
         );
