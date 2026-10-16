@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, ShoppingCart, Heart, Star, Book, DollarSign, Eye, Download } from 'lucide-react';
+import { Search, Filter, ShoppingCart, Heart, Star, Book as BookIcon, Eye } from 'lucide-react';
 import './BookStore.css';
 
 interface Book {
@@ -77,6 +77,7 @@ const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUp
   useEffect(() => {
     setBooks(sampleBooks);
     setFilteredBooks(sampleBooks);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, []);
 
   useEffect(() => {
@@ -422,7 +423,7 @@ const BookStore: React.FC<BookStoreProps> = ({ isAuthenticated = false, onCartUp
         
         {filteredBooks.length === 0 && (
           <div className="no-results">
-            <Book size={64} />
+            <BookIcon size={64} />
             <h3>{books.length === 0 ? 'No books published yet' : 'No books found'}</h3>
             <p>{books.length === 0 ? 'Books published to Bitcoin will appear here.' : 'Try adjusting your search or filters'}</p>
           </div>

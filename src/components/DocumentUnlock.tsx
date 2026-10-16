@@ -30,6 +30,7 @@ const DocumentUnlock: React.FC<DocumentUnlockProps> = ({
     checkUnlockStatus();
     const interval = setInterval(checkUnlockStatus, 1000);
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, []);
 
   const checkUnlockStatus = async () => {

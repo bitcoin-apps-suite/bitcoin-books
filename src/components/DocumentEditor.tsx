@@ -16,7 +16,6 @@ import QuillEditor from './QuillEditor';
 import './QuillEditor.css';
 import DragDropZone from './DragDropZone';
 import AIChatWindow from './AIChatWindow';
-import { AIService } from '../services/AIService';
 
 interface DocumentEditorProps {
   documentService: BlockchainDocumentService | null;
@@ -44,17 +43,16 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [wordCount, setWordCount] = useState(0);
   const [charCount, setCharCount] = useState(0);
-  const [cursorPosition, setCursorPosition] = useState('Line 1, Column 1');
+  const [cursorPosition] = useState('Line 1, Column 1');
   const [autoSaveStatus, setAutoSaveStatus] = useState('');
-  const [lastSaveTime, setLastSaveTime] = useState<Date | null>(null);
+  const [, setLastSaveTime] = useState<Date | null>(null);
   const [unsavedChanges, setUnsavedChanges] = useState(false);
   const [lastHashTime, setLastHashTime] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedStorageOption, setSelectedStorageOption] = useState<StorageOption | null>(null);
+  const [, setSelectedStorageOption] = useState<StorageOption | null>(null);
   const [editorContent, setEditorContent] = useState('');
   const [internalShowAIChat, setInternalShowAIChat] = useState(false);
   const [selectedAIProvider, setSelectedAIProvider] = useState('gemini');
-  const [aiService] = useState(() => new AIService(new HandCashService()));
   
   // Use prop if provided, otherwise use internal state
   const showAIChat = onToggleAIChat ? propShowAIChat : internalShowAIChat;
@@ -230,6 +228,7 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
     
     prevPropDocument.current = propDocument;
     isInitialMount.current = false;
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, [propDocument, loadLocalDocument, isAuthenticated, documentService, localDocumentId]);
 
   // Listen for tokenize modal event
@@ -366,38 +365,6 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
   }, [localDocumentId, quillContent, editorContent, wordCount, charCount, isAuthenticated, documentService, onDocumentSaved]);
 
   // Cursor position is now handled by Quill editor
-
-  const hasUnsavedChanges = useCallback((): boolean => {
-    if (!currentDocument) return false;
-    const currentContent = quillContent || editorContent;
-    return currentContent !== currentDocument.content;
-  }, [currentDocument, quillContent, editorContent]);
-
-  const handleNewDocument = useCallback(() => {
-    // Save current document first if it has content
-    if (localDocumentId) {
-      const content = quillContent || editorContent;
-      const text = content.replace(/<[^>]*>/g, '').trim();
-      if (text && text !== '' && text !== 'Start writing...') {
-        saveToLocalStorage();
-      }
-    }
-    
-    // Don't create a new document yet - just clear the editor
-    // Document will be created when user starts typing
-    setLocalDocumentId(null);
-    LocalDocumentStorage.setCurrentDocumentId('');
-    setCurrentDocument(null);
-    
-    setQuillContent('<p><br></p>');
-    setEditorContent('<p><br></p>');
-    setWordCount(0);
-    setCharCount(0);
-    setIsFirstSave(true); // Reset first save flag for new document
-    
-    setAutoSaveStatus('New document ready');
-    setTimeout(() => setAutoSaveStatus(''), 2000);
-  }, [localDocumentId, saveToLocalStorage, isAuthenticated, documentService, onDocumentUpdate]);
 
 
   const saveDocument = async () => {
@@ -568,45 +535,6 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
     }
   };
 
-  const autoSave = useCallback(async () => {
-    // For guest users, just save to local storage
-    if (!isAuthenticated) {
-      saveToLocalStorage();
-      setAutoSaveStatus('✅ Auto-saved locally');
-      setTimeout(() => setAutoSaveStatus(''), 2000);
-      return;
-    }
-
-    // For authenticated users with a document on blockchain
-    if (!currentDocument || !documentService) return;
-
-    try {
-      setAutoSaveStatus('💾 Auto-saving to blockchain...');
-
-      const content = quillContent || editorContent;
-      const text = content.replace(/<[^>]*>/g, '');
-      const title = extractTitleFromContent(text) || currentDocument.title;
-
-      await documentService.updateDocument(currentDocument.id, title, text, selectedStorageOption?.id as any);
-
-      setCurrentDocument(prev => prev ? {
-        ...prev,
-        title,
-        content: text,
-        lastUpdated: Date.now(),
-        wordCount,
-        charCount
-      } : null);
-
-      setAutoSaveStatus('✅ Auto-saved to blockchain');
-      setTimeout(() => setAutoSaveStatus(''), 2000);
-    } catch (error) {
-      console.error('Auto-save failed:', error);
-      setAutoSaveStatus('❌ Auto-save failed');
-      setTimeout(() => setAutoSaveStatus(''), 3000);
-    }
-  }, [isAuthenticated, currentDocument, documentService, selectedStorageOption, wordCount, charCount, saveToLocalStorage, quillContent, editorContent]);
-
   // Auto-save every minute
   useEffect(() => {
     const interval = setInterval(() => {
@@ -645,6 +573,7 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
     }, 60000); // Every 60 seconds (1 minute)
 
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, [saveToLocalStorage, isAuthenticated, localDocumentId, lastHashTime, quillContent]);
   
   // Hash document (ultra-low cost, just store hash)
@@ -718,23 +647,6 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
     console.log('Image insertion should be done through Quill toolbar');
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    // Keyboard shortcuts
-    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-      e.preventDefault();
-      saveDocument();
-    } else if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
-      e.preventDefault();
-      handleNewDocument();
-    } else if (e.key === 'F11') {
-      e.preventDefault();
-      toggleFullscreen();
-    } else if (e.key === 'Tab') {
-      e.preventDefault();
-      document.execCommand('insertText', false, '    ');
-    }
-  };
-
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
   };
@@ -802,12 +714,6 @@ const DocumentEditor: React.FC<DocumentEditorProps> = ({
         }
       }
     }
-  };
-
-  const handlePaste = (e: React.ClipboardEvent) => {
-    e.preventDefault();
-    const text = e.clipboardData.getData('text/plain');
-    document.execCommand('insertText', false, text);
   };
 
   const showNotification = (message: string, type: 'success' | 'error' = 'success') => {

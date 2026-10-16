@@ -521,6 +521,7 @@ const BWriterContributionsPage: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       clearInterval(checkSidebarState);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- deps intentionally limited; omitted values are recreated each render and would re-run this effect every render
   }, []);
 
   const fetchContributors = async () => {
